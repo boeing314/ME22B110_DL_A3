@@ -378,7 +378,7 @@ class Transformer(nn.Module):
 
     # ── Google Drive file-id of your saved checkpoint ─────────────────
     # Replace this with your actual file-id once you upload to Drive.
-    _GDRIVE_FILE_ID   = "YOUR_GDRIVE_FILE_ID_HERE"
+    _GDRIVE_FILE_ID   = "161lOAjSnO4Fmx3lQqYug2gDmmTKXxYst"#"YOUR_GDRIVE_FILE_ID_HERE"
     _CHECKPOINT_NAME  = "checkpoint_best.pt"
 
     def __init__(
