@@ -356,7 +356,7 @@ class Decoder(nn.Module):
 #   FULL TRANSFORMER
 # ══════════════════════════════════════════════════════════════════════
 
-# Special token indices (must match dataset.py)
+# Special token indices (must match datasets.py)
 _UNK_IDX, _PAD_IDX, _SOS_IDX, _EOS_IDX = 0, 1, 2, 3
 
 
@@ -378,7 +378,7 @@ class Transformer(nn.Module):
 
     # ── Google Drive file-id of your saved checkpoint ─────────────────
     # Replace this with your actual file-id once you upload to Drive.
-    _GDRIVE_FILE_ID   = "161lOAjSnO4Fmx3lQqYug2gDmmTKXxYst"
+    _GDRIVE_FILE_ID   = "YOUR_GDRIVE_FILE_ID_HERE"
     _CHECKPOINT_NAME  = "checkpoint_best.pt"
 
     def __init__(
@@ -412,13 +412,40 @@ class Transformer(nn.Module):
         self._spacy_de = _load_spacy("de_core_news_sm")
         self._spacy_en = _load_spacy("en_core_web_sm")
 
-        # ── 2. Vocabulary ──────────────────────────────────────────────
-        self._src_vocab, self._tgt_vocab = self._build_vocabs()
+        # ── 2. Device ─────────────────────────────────────────────────
+        self._device = device if device else (
+            "cuda" if torch.cuda.is_available() else "cpu"
+        )
+
+        # ── 3. Download checkpoint if needed ──────────────────────────
+        ckpt_path = weights_path or self._CHECKPOINT_NAME
+        if not os.path.exists(ckpt_path):
+            self._download_weights(ckpt_path)
+
+        # ── 4. Vocabulary ─────────────────────────────────────────────
+        # Prefer loading vocab from the checkpoint (no `datasets` needed).
+        # Fall back to building from scratch only during training.
+        _ckpt_state = None
+        if os.path.exists(ckpt_path):
+            _ckpt_state = torch.load(ckpt_path, map_location="cpu")
+
+        if (isinstance(_ckpt_state, dict)
+                and "src_itos" in _ckpt_state
+                and "tgt_itos" in _ckpt_state):
+            # Fast path: vocab stored inside the checkpoint
+            self._src_vocab, self._tgt_vocab = self._restore_vocabs(
+                _ckpt_state["src_itos"], _ckpt_state["tgt_itos"]
+            )
+            print("[Transformer] vocab loaded from checkpoint")
+        else:
+            # Training-time path: build from Multi30k (requires datasets)
+            print("[Transformer] building vocab from Multi30k dataset ...")
+            self._src_vocab, self._tgt_vocab = self._build_vocabs()
 
         resolved_src = src_vocab_size if src_vocab_size > 0 else len(self._src_vocab)
         resolved_tgt = tgt_vocab_size if tgt_vocab_size > 0 else len(self._tgt_vocab)
 
-        # ── 3. Architecture ────────────────────────────────────────────
+        # ── 5. Architecture ───────────────────────────────────────────
         super().__init__()
 
         self.src_embed   = nn.Embedding(resolved_src, d_model)
@@ -440,26 +467,14 @@ class Transformer(nn.Module):
 
         self._init_weights()
 
-        # ── 4. Device ──────────────────────────────────────────────────
-        if device:
-            self._device = device
-        else:
-            self._device = "cuda" if torch.cuda.is_available() else "cpu"
-
-        # ── 5. Load weights ────────────────────────────────────────────
-        ckpt_path = weights_path or self._CHECKPOINT_NAME
-        if not os.path.exists(ckpt_path):
-            self._download_weights(ckpt_path)
-        if os.path.exists(ckpt_path):
-            state = torch.load(ckpt_path, map_location="cpu")
-            # checkpoint may be a raw state-dict or our full dict
-            if isinstance(state, dict) and "model_state_dict" in state:
-                self.load_state_dict(state["model_state_dict"])
-            else:
-                self.load_state_dict(state)
+        # ── 6. Load model weights ─────────────────────────────────────
+        if _ckpt_state is not None:
+            sd = (_ckpt_state.get("model_state_dict")
+                  if isinstance(_ckpt_state, dict) else _ckpt_state)
+            self.load_state_dict(sd)
             print(f"[Transformer] weights loaded from {ckpt_path}")
         else:
-            print("[Transformer] WARNING: no weights found — using random init")
+            print("[Transformer] WARNING: no checkpoint found — using random init")
 
         self.to(self._device)
 
@@ -495,8 +510,13 @@ class Transformer(nn.Module):
         return [t.text.lower() for t in self._spacy_en.tokenizer(text)]
 
     def _build_vocabs(self):
-        """Build src/tgt vocabs from Multi30k training split."""
-        from datasets import load_dataset
+        """Build src/tgt vocabs from Multi30k training split (requires datasets)."""
+        # Use importlib to load HuggingFace 'datasets' package.
+        # Cannot do 'from datasets import load_dataset' because our own
+        # file is named datasets.py, which would cause a circular import.
+        import importlib
+        _hf = importlib.import_module('datasets')
+        load_dataset = _hf.load_dataset
         src_vocab = self._Vocab()
         tgt_vocab = self._Vocab()
         dataset   = load_dataset("bentrevett/multi30k", split="train")
@@ -507,32 +527,34 @@ class Transformer(nn.Module):
                 tgt_vocab.add(tok)
         return src_vocab, tgt_vocab
 
+    def _restore_vocabs(self, src_itos: list, tgt_itos: list):
+        """Reconstruct _Vocab objects from saved itos lists (no datasets needed)."""
+        def _from_itos(itos):
+            v = self._Vocab()
+            v.itos = itos
+            v.stoi = {t: i for i, t in enumerate(itos)}
+            return v
+        return _from_itos(src_itos), _from_itos(tgt_itos)
+
     # ── Weight download ───────────────────────────────────────────────
 
     def _download_weights(self, dest_path: str):
-        """
-        Download checkpoint from Google Drive using stdlib urllib only.
-        No gdown / requests dependency.
-        """
+        """Download checkpoint from Google Drive using gdown."""
         if self._GDRIVE_FILE_ID == "YOUR_GDRIVE_FILE_ID_HERE":
             print("[Transformer] _GDRIVE_FILE_ID not set — skipping download")
             return
 
-        import urllib.request
-
-        # Google Drive direct-download URL (handles small files; for large
-        # files Drive issues a virus-scan confirmation page — we handle that too)
-        def _gdrive_url(file_id):
-            return f"https://drive.google.com/uc?export=download&id={file_id}&confirm=t"
-
-        url = _gdrive_url(self._GDRIVE_FILE_ID)
-        print(f"[Transformer] downloading weights → {dest_path}")
-
         try:
-            urllib.request.urlretrieve(url, dest_path)
-            print(f"[Transformer] download complete ({dest_path})")
-        except Exception as e:
-            print(f"[Transformer] download failed: {e}")
+            import gdown
+        except ImportError:
+            import sys, subprocess
+            subprocess.run([sys.executable, "-m", "pip", "install", "gdown", "-q"],
+                           check=True)
+            import gdown
+
+        url = f"https://drive.google.com/uc?id={self._GDRIVE_FILE_ID}"
+        print(f"[Transformer] downloading weights via gdown → {dest_path}")
+        gdown.download(url, dest_path, quiet=False)
 
     # ── Weight init ───────────────────────────────────────────────────
 

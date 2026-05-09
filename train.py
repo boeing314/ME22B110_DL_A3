@@ -22,7 +22,7 @@ from typing import Optional
 import time
 
 from model import Transformer, make_src_mask, make_tgt_mask
-from dataset import PAD_IDX, SOS_IDX, EOS_IDX
+from datasets import PAD_IDX, SOS_IDX, EOS_IDX
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -203,6 +203,58 @@ def greedy_decode(
 #   BLEU EVALUATION
 # ══════════════════════════════════════════════════════════════════════
 
+def _corpus_bleu(hypotheses: list, references: list) -> float:
+    """
+    Corpus-level BLEU (1–4 grams) with add-1 smoothing for n-gram orders
+    where the hypothesis is too short to produce any n-grams.
+    Pure Python + stdlib only — no torchtext / nltk / sacrebleu.
+
+    Args:
+        hypotheses : list of token lists  e.g. [["a","b","c"], ...]
+        references : list of lists-of-token-lists  e.g. [[["a","b","c"]], ...]
+
+    Returns:
+        BLEU score in range 0–100.
+    """
+    import math
+    from collections import Counter
+
+    def ngrams(tokens, n):
+        return Counter(tuple(tokens[i:i+n]) for i in range(len(tokens) - n + 1))
+
+    clipped_counts = [0] * 4
+    total_counts   = [0] * 4
+    hyp_len = 0
+    ref_len = 0
+
+    for hyp, refs in zip(hypotheses, references):
+        hyp_len += len(hyp)
+        ref = min(refs, key=lambda r: abs(len(r) - len(hyp)))
+        ref_len += len(ref)
+
+        for n in range(1, 5):
+            hyp_ng = ngrams(hyp, n)
+            ref_ng = ngrams(ref, n)
+            for gram, cnt in hyp_ng.items():
+                clipped_counts[n-1] += min(cnt, ref_ng.get(gram, 0))
+            total_counts[n-1] += max(len(hyp) - n + 1, 0)
+
+    if hyp_len == 0:
+        return 0.0
+
+    bp = 1.0 if hyp_len >= ref_len else math.exp(1.0 - ref_len / hyp_len)
+
+    log_avg = 0.0
+    for n in range(4):
+        # Smoothing: if no n-grams exist in hypothesis, treat precision as ~0
+        # but don't hard-zero the whole score (Chen & Cherry 2014, method 1)
+        num = clipped_counts[n] + 1e-10
+        den = total_counts[n]   + 1e-10
+        log_avg += math.log(num / den)
+
+    return bp * math.exp(log_avg / 4) * 100.0
+
+
 def evaluate_bleu(
     model: Transformer,
     test_dataloader: DataLoader,
@@ -212,17 +264,16 @@ def evaluate_bleu(
 ) -> float:
     """
     Evaluate translation quality with corpus-level BLEU score.
+    Uses only stdlib — no torchtext / nltk / sacrebleu.
 
     Returns:
         bleu_score : Corpus-level BLEU (float, range 0–100).
     """
-    from torchtext.data.metrics import bleu_score as torchtext_bleu
-
     model.eval()
-    all_hypotheses  = []
-    all_references  = []
+    all_hypotheses = []
+    all_references = []
 
-    # Resolve vocabulary lookup method
+    # Resolve vocabulary lookup (supports both .itos[] and .lookup_token())
     def idx_to_token(idx):
         if hasattr(tgt_vocab, 'lookup_token'):
             return tgt_vocab.lookup_token(idx)
@@ -245,13 +296,11 @@ def evaluate_bleu(
                 device=device,
             )
 
-            # Convert hypothesis to list of tokens (strip special tokens)
             hyp_tokens = [
                 idx_to_token(idx.item())
                 for idx in ys[0]
                 if idx.item() not in special_indices
             ]
-            # Convert reference to list of tokens (strip special tokens)
             ref_tokens = [
                 idx_to_token(idx.item())
                 for idx in tgt[0]
@@ -259,11 +308,9 @@ def evaluate_bleu(
             ]
 
             all_hypotheses.append(hyp_tokens)
-            all_references.append([ref_tokens])   # torchtext expects list of lists
+            all_references.append([ref_tokens])   # one reference per sentence
 
-    # torchtext bleu_score returns value in [0, 1]; multiply by 100
-    score = torchtext_bleu(all_hypotheses, all_references) * 100.0
-    return score
+    return _corpus_bleu(all_hypotheses, all_references)
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -277,13 +324,21 @@ def save_checkpoint(
     epoch: int,
     path: str = "checkpoint.pt",
 ) -> None:
-    """Save model + optimiser + scheduler state to disk."""
+    """
+    Save model + optimiser + scheduler state to disk.
+    Vocab itos lists are bundled into the checkpoint so that
+    Transformer() can reconstruct them at inference time without
+    needing the `datasets` library.
+    """
     torch.save({
         'epoch':                epoch,
         'model_state_dict':     model.state_dict(),
         'optimizer_state_dict': optimizer.state_dict(),
         'scheduler_state_dict': scheduler.state_dict(),
         'model_config':         model.config,
+        # ── vocab bundled here — loaded by Transformer.__init__ ──────
+        'src_itos':             model._src_vocab.itos,
+        'tgt_itos':             model._tgt_vocab.itos,
     }, path)
     print(f"  Checkpoint saved → {path}  (epoch {epoch})")
 
@@ -319,43 +374,43 @@ def run_training_experiment() -> None:
     """
     Set up and run the full training experiment.
     """
-    #import wandb
-    from dataset import get_dataloaders
+    import wandb
+    from datasets import get_dataloaders
     from lr_scheduler import NoamScheduler
 
     # ── Hyperparameters ───────────────────────────────────────────────
     config = dict(
-        d_model      = 256,
-        N            = 3,
-        num_heads    = 8,
-        d_ff         = 512,
-        dropout      = 0.1,
-        batch_size   = 128,
-        num_epochs   = 25,
-        warmup_steps = 4000,
-        smoothing    = 0.1,
+        d_model       = 256,
+        N             = 3,
+        num_heads     = 8,
+        d_ff          = 512,
+        dropout       = 0.1,
+        batch_size    = 128,
+        num_epochs    = 10,
+        warmup_steps  = 4000,
+        smoothing     = 0.1,
     )
 
-    #wandb.init(project="da6401-a3", config=config)
-    #cfg = wandb.config
+    wandb.init(project="da6401-a3", config=config)
+    cfg = wandb.config
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print(f"Using device: {device}")
 
     # ── Data ──────────────────────────────────────────────────────────
     train_loader, val_loader, test_loader, src_vocab, tgt_vocab = get_dataloaders(
-        batch_size=config['batch_size']
+        batch_size=cfg.batch_size
     )
 
     # ── Model ─────────────────────────────────────────────────────────
     model = Transformer(
         src_vocab_size = len(src_vocab),
         tgt_vocab_size = len(tgt_vocab),
-        d_model        = config['d_model'],
-        N              = config['N'],
-        num_heads      = config['num_heads'],
-        d_ff           = config['d_ff'],
-        dropout        = config['dropout'],
+        d_model        = cfg.d_model,
+        N              = cfg.N,
+        num_heads      = cfg.num_heads,
+        d_ff           = cfg.d_ff,
+        dropout        = cfg.dropout,
     ).to(device)
 
     n_params = sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -365,19 +420,19 @@ def run_training_experiment() -> None:
     optimizer = torch.optim.Adam(
         model.parameters(), lr=1.0, betas=(0.9, 0.98), eps=1e-9
     )
-    scheduler = NoamScheduler(optimizer, d_model=config['d_model'], warmup_steps=config['warmup_steps'])
+    scheduler = NoamScheduler(optimizer, d_model=cfg.d_model, warmup_steps=cfg.warmup_steps)
 
     # ── Loss ──────────────────────────────────────────────────────────
     loss_fn = LabelSmoothingLoss(
         vocab_size=len(tgt_vocab),
         pad_idx=PAD_IDX,
-        smoothing=config['smoothing'],
+        smoothing=cfg.smoothing,
     )
 
     # ── Training loop ─────────────────────────────────────────────────
     best_val_loss = float('inf')
 
-    for epoch in range(config['num_epochs']):
+    for epoch in range(cfg.num_epochs):
         train_loss = run_epoch(
             train_loader, model, loss_fn,
             optimizer, scheduler,
@@ -389,12 +444,12 @@ def run_training_experiment() -> None:
             epoch_num=epoch, is_train=False, device=device,
         )
 
-        #wandb.log({
-        #    'epoch':      epoch,
-        #    'train_loss': train_loss,
-        #    'val_loss':   val_loss,
-        #    'lr':         optimizer.param_groups[0]['lr'],
-        #})
+        wandb.log({
+            'epoch':      epoch,
+            'train_loss': train_loss,
+            'val_loss':   val_loss,
+            'lr':         optimizer.param_groups[0]['lr'],
+        })
 
         save_checkpoint(model, optimizer, scheduler, epoch, path=f"checkpoint_epoch{epoch}.pt")
 
@@ -408,9 +463,9 @@ def run_training_experiment() -> None:
 
     bleu = evaluate_bleu(model, test_loader, tgt_vocab, device=device)
     print(f"\nTest BLEU: {bleu:.2f}")
-    #wandb.log({'test_bleu': bleu, 'best_epoch': best_epoch})
+    wandb.log({'test_bleu': bleu, 'best_epoch': best_epoch})
 
-    #wandb.finish()
+    wandb.finish()
 
 
 if __name__ == "__main__":
