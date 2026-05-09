@@ -368,7 +368,7 @@ class Transformer(nn.Module):
       1. Loads spaCy tokenisers (de + en).
       2. Builds / loads source & target vocabularies from the Multi30k
          training split (so vocab is always consistent with training).
-      3. Downloads trained weights from Google Drive via gdown and loads
+      3. Downloads trained weights from Google Drive (stdlib urllib) and loads
          them — all transparent to the caller.
 
     Public API guaranteed by the autograder:
@@ -378,7 +378,7 @@ class Transformer(nn.Module):
 
     # ── Google Drive file-id of your saved checkpoint ─────────────────
     # Replace this with your actual file-id once you upload to Drive.
-    _GDRIVE_FILE_ID   = "161lOAjSnO4Fmx3lQqYug2gDmmTKXxYst"#"YOUR_GDRIVE_FILE_ID_HERE"
+    _GDRIVE_FILE_ID   = "161lOAjSnO4Fmx3lQqYug2gDmmTKXxYst"
     _CHECKPOINT_NAME  = "checkpoint_best.pt"
 
     def __init__(
@@ -390,24 +390,27 @@ class Transformer(nn.Module):
         num_heads: int   = 8,
         d_ff:      int   = 512,
         dropout:   float = 0.1,
-        weights_path: str = "",     # explicit local path overrides gdown
+        weights_path: str = "",     # explicit local path overrides urllib download
         device: str = "",           # "" → auto-detect
     ) -> None:
         # ── 1. Tokenisers ──────────────────────────────────────────────
-        import spacy, subprocess, os
-        try:
-            self._spacy_de = spacy.load("de_core_news_sm")
-        except OSError:
-            subprocess.run(["python", "-m", "spacy", "download",
-                            "de_core_news_sm"], check=True)
-            self._spacy_de = spacy.load("de_core_news_sm")
+        import sys, spacy, subprocess, os
 
-        try:
-            self._spacy_en = spacy.load("en_core_web_sm")
-        except OSError:
-            subprocess.run(["python", "-m", "spacy", "download",
-                            "en_core_web_sm"], check=True)
-            self._spacy_en = spacy.load("en_core_web_sm")
+        def _load_spacy(model_name: str):
+            """Load a spaCy model, downloading it first if missing."""
+            try:
+                return spacy.load(model_name)
+            except OSError:
+                # sys.executable always resolves to the correct interpreter
+                # ('python3', venv path, etc.) — never the bare 'python' alias.
+                subprocess.run(
+                    [sys.executable, "-m", "spacy", "download", model_name],
+                    check=True
+                )
+                return spacy.load(model_name)
+
+        self._spacy_de = _load_spacy("de_core_news_sm")
+        self._spacy_en = _load_spacy("en_core_web_sm")
 
         # ── 2. Vocabulary ──────────────────────────────────────────────
         self._src_vocab, self._tgt_vocab = self._build_vocabs()
@@ -507,19 +510,29 @@ class Transformer(nn.Module):
     # ── Weight download ───────────────────────────────────────────────
 
     def _download_weights(self, dest_path: str):
-        """Download checkpoint from Google Drive using gdown."""
+        """
+        Download checkpoint from Google Drive using stdlib urllib only.
+        No gdown / requests dependency.
+        """
         if self._GDRIVE_FILE_ID == "YOUR_GDRIVE_FILE_ID_HERE":
             print("[Transformer] _GDRIVE_FILE_ID not set — skipping download")
             return
+
+        import urllib.request
+
+        # Google Drive direct-download URL (handles small files; for large
+        # files Drive issues a virus-scan confirmation page — we handle that too)
+        def _gdrive_url(file_id):
+            return f"https://drive.google.com/uc?export=download&id={file_id}&confirm=t"
+
+        url = _gdrive_url(self._GDRIVE_FILE_ID)
+        print(f"[Transformer] downloading weights → {dest_path}")
+
         try:
-            import gdown
-        except ImportError:
-            import subprocess
-            subprocess.run(["pip", "install", "gdown", "-q"], check=True)
-            import gdown
-        url = f"https://drive.google.com/uc?id={self._GDRIVE_FILE_ID}"
-        print(f"[Transformer] downloading weights from Google Drive → {dest_path}")
-        gdown.download(url, dest_path, quiet=False)
+            urllib.request.urlretrieve(url, dest_path)
+            print(f"[Transformer] download complete ({dest_path})")
+        except Exception as e:
+            print(f"[Transformer] download failed: {e}")
 
     # ── Weight init ───────────────────────────────────────────────────
 
