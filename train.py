@@ -22,7 +22,7 @@ from typing import Optional
 import time
 
 from model import Transformer, make_src_mask, make_tgt_mask
-from datasets import PAD_IDX, SOS_IDX, EOS_IDX
+from dataset import PAD_IDX, SOS_IDX, EOS_IDX
 
 
 # ══════════════════════════════════════════════════════════════════════
@@ -328,7 +328,7 @@ def save_checkpoint(
     Save model + optimiser + scheduler state to disk.
     Vocab itos lists are bundled into the checkpoint so that
     Transformer() can reconstruct them at inference time without
-    needing the `datasets` library.
+    needing the `datasets` (HuggingFace) library.
     """
     torch.save({
         'epoch':                epoch,
@@ -375,7 +375,7 @@ def run_training_experiment() -> None:
     Set up and run the full training experiment.
     """
     import wandb
-    from datasets import get_dataloaders
+    from dataset import get_dataloaders
     from lr_scheduler import NoamScheduler
 
     # ── Hyperparameters ───────────────────────────────────────────────

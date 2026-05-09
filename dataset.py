@@ -1,12 +1,12 @@
 """
-datasets.py — Multi30k Dataset Loading and Processing
+dataset.py — Multi30k Dataset Loading and Processing
 DA6401 Assignment 3: "Attention Is All You Need"
 """
 
 import torch
 from torch.utils.data import Dataset, DataLoader
 from torch.nn.utils.rnn import pad_sequence
-import importlib
+from datasets import load_dataset
 import spacy
 
 
@@ -61,10 +61,8 @@ class Multi30kDataset(Dataset):
             subprocess.run(['python', '-m', 'spacy', 'download', 'en_core_web_sm'], check=True)
             self.spacy_en = spacy.load('en_core_web_sm')
 
-        # Load HuggingFace dataset via importlib to avoid circular import
-        # (this file is named datasets.py, same as the HuggingFace package)
-        _hf = importlib.import_module('datasets')
-        raw = _hf.load_dataset('bentrevett/multi30k')
+        # Load dataset from HuggingFace
+        raw = load_dataset('bentrevett/multi30k')
 
         # Build vocab on training split only
         self.src_vocab = Vocabulary()

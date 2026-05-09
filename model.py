@@ -356,7 +356,7 @@ class Decoder(nn.Module):
 #   FULL TRANSFORMER
 # ══════════════════════════════════════════════════════════════════════
 
-# Special token indices (must match datasets.py)
+# Special token indices (must match dataset.py)
 _UNK_IDX, _PAD_IDX, _SOS_IDX, _EOS_IDX = 0, 1, 2, 3
 
 
@@ -511,12 +511,7 @@ class Transformer(nn.Module):
 
     def _build_vocabs(self):
         """Build src/tgt vocabs from Multi30k training split (requires datasets)."""
-        # Use importlib to load HuggingFace 'datasets' package.
-        # Cannot do 'from datasets import load_dataset' because our own
-        # file is named datasets.py, which would cause a circular import.
-        import importlib
-        _hf = importlib.import_module('datasets')
-        load_dataset = _hf.load_dataset
+        from datasets import load_dataset
         src_vocab = self._Vocab()
         tgt_vocab = self._Vocab()
         dataset   = load_dataset("bentrevett/multi30k", split="train")
