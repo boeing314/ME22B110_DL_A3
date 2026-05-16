@@ -419,6 +419,8 @@ class Transformer(nn.Module):
 
         # ── 3. Download checkpoint if needed ──────────────────────────
         ckpt_path = weights_path or self._CHECKPOINT_NAME
+        if not os.path.exists(ckpt_path):
+            self._download_weights(ckpt_path)
 
 
         # ── 4. Vocabulary ─────────────────────────────────────────────
