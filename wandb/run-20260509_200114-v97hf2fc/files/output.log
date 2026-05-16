@@ -1,0 +1,41 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] building vocab from Multi30k dataset ...
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 711, in <module>
+    run_experiment_scaled()
+  File "/home/asher747/da6401_assignment_3/train.py", line 670, in run_experiment_scaled
+    train_loss = run_epoch(
+                 ^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 119, in run_epoch
+    logits = model(src, tgt_in, src_mask, tgt_mask)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/model.py", line 578, in forward
+    memory = self.encode(src, src_mask)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/model.py", line 558, in encode
+    return self.encoder(x, src_mask)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/model.py", line 323, in forward
+    x = layer(x, mask)
+        ^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 403, in _forward_unimplemented
+    raise NotImplementedError(
+NotImplementedError: Module [EncoderLayer] is missing the required "forward" function

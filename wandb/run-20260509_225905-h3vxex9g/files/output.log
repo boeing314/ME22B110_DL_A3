@@ -1,0 +1,155 @@
+Using device: cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+[TRAIN] Epoch 0 | Step 0 | Loss 9.2232 | Elapsed 1.2s
+[TRAIN] Epoch 0 | Step 50 | Loss 8.8754 | Elapsed 4.6s
+[TRAIN] Epoch 0 | Step 100 | Loss 8.4677 | Elapsed 8.0s
+[TRAIN] Epoch 0 | Step 150 | Loss 8.0131 | Elapsed 11.4s
+[TRAIN] Epoch 0 | Step 200 | Loss 7.4109 | Elapsed 15.0s
+  → Epoch 0 train avg loss: 8.2868
+[EVAL] Epoch 0 | Step 0 | Loss 6.9544 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 6.9593
+Epoch 1 | Train Loss: 8.2868 | Val Loss: 6.9593 | Val Acc: 0.2003 | Confidence: 0.0036
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 0)
+[TRAIN] Epoch 1 | Step 0 | Loss 7.0591 | Elapsed 0.1s
+[TRAIN] Epoch 1 | Step 50 | Loss 6.3844 | Elapsed 3.8s
+[TRAIN] Epoch 1 | Step 100 | Loss 5.9997 | Elapsed 7.5s
+[TRAIN] Epoch 1 | Step 150 | Loss 5.5977 | Elapsed 11.1s
+[TRAIN] Epoch 1 | Step 200 | Loss 5.3678 | Elapsed 14.5s
+  → Epoch 1 train avg loss: 5.9456
+[EVAL] Epoch 1 | Step 0 | Loss 5.2188 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 5.2039
+Epoch 2 | Train Loss: 5.9456 | Val Loss: 5.2039 | Val Acc: 0.3026 | Confidence: 0.1460
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 1)
+[TRAIN] Epoch 2 | Step 0 | Loss 5.3122 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 5.0319 | Elapsed 3.6s
+[TRAIN] Epoch 2 | Step 100 | Loss 4.9339 | Elapsed 7.1s
+[TRAIN] Epoch 2 | Step 150 | Loss 4.7268 | Elapsed 10.9s
+[TRAIN] Epoch 2 | Step 200 | Loss 4.7241 | Elapsed 14.6s
+  → Epoch 2 train avg loss: 4.9238
+[EVAL] Epoch 2 | Step 0 | Loss 4.6052 | Elapsed 0.0s
+  → Epoch 2 val avg loss: 4.5746
+Epoch 3 | Train Loss: 4.9238 | Val Loss: 4.5746 | Val Acc: 0.3907 | Confidence: 0.2362
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 2)
+[TRAIN] Epoch 3 | Step 0 | Loss 4.6076 | Elapsed 0.1s
+[TRAIN] Epoch 3 | Step 50 | Loss 4.5119 | Elapsed 3.4s
+[TRAIN] Epoch 3 | Step 100 | Loss 4.4865 | Elapsed 6.8s
+[TRAIN] Epoch 3 | Step 150 | Loss 4.4451 | Elapsed 10.3s
+[TRAIN] Epoch 3 | Step 200 | Loss 4.2379 | Elapsed 13.9s
+  → Epoch 3 train avg loss: 4.4284
+[EVAL] Epoch 3 | Step 0 | Loss 4.1743 | Elapsed 0.0s
+  → Epoch 3 val avg loss: 4.1302
+Epoch 4 | Train Loss: 4.4284 | Val Loss: 4.1302 | Val Acc: 0.4650 | Confidence: 0.3048
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 3)
+[TRAIN] Epoch 4 | Step 0 | Loss 4.2455 | Elapsed 0.1s
+[TRAIN] Epoch 4 | Step 50 | Loss 4.2168 | Elapsed 3.4s
+[TRAIN] Epoch 4 | Step 100 | Loss 3.9257 | Elapsed 6.8s
+[TRAIN] Epoch 4 | Step 150 | Loss 3.9906 | Elapsed 10.2s
+[TRAIN] Epoch 4 | Step 200 | Loss 3.8339 | Elapsed 13.7s
+  → Epoch 4 train avg loss: 3.9880
+[EVAL] Epoch 4 | Step 0 | Loss 3.7790 | Elapsed 0.0s
+  → Epoch 4 val avg loss: 3.7106
+Epoch 5 | Train Loss: 3.9880 | Val Loss: 3.7106 | Val Acc: 0.5322 | Confidence: 0.3740
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 4)
+[TRAIN] Epoch 5 | Step 0 | Loss 3.7048 | Elapsed 0.3s
+[TRAIN] Epoch 5 | Step 50 | Loss 3.7197 | Elapsed 3.8s
+[TRAIN] Epoch 5 | Step 100 | Loss 3.5991 | Elapsed 7.3s
+[TRAIN] Epoch 5 | Step 150 | Loss 3.6246 | Elapsed 10.7s
+[TRAIN] Epoch 5 | Step 200 | Loss 3.5090 | Elapsed 14.1s
+  → Epoch 5 train avg loss: 3.6003
+[EVAL] Epoch 5 | Step 0 | Loss 3.4973 | Elapsed 0.0s
+  → Epoch 5 val avg loss: 3.4252
+Epoch 6 | Train Loss: 3.6003 | Val Loss: 3.4252 | Val Acc: 0.5807 | Confidence: 0.4188
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 5)
+[TRAIN] Epoch 6 | Step 0 | Loss 3.4819 | Elapsed 0.1s
+[TRAIN] Epoch 6 | Step 50 | Loss 3.2264 | Elapsed 3.7s
+[TRAIN] Epoch 6 | Step 100 | Loss 3.2143 | Elapsed 7.0s
+[TRAIN] Epoch 6 | Step 150 | Loss 3.2864 | Elapsed 10.4s
+[TRAIN] Epoch 6 | Step 200 | Loss 3.3360 | Elapsed 13.8s
+  → Epoch 6 train avg loss: 3.2946
+[EVAL] Epoch 6 | Step 0 | Loss 3.3033 | Elapsed 0.0s
+  → Epoch 6 val avg loss: 3.2202
+Epoch 7 | Train Loss: 3.2946 | Val Loss: 3.2202 | Val Acc: 0.6122 | Confidence: 0.4698
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 6)
+[TRAIN] Epoch 7 | Step 0 | Loss 3.1176 | Elapsed 0.1s
+[TRAIN] Epoch 7 | Step 50 | Loss 3.1698 | Elapsed 3.5s
+[TRAIN] Epoch 7 | Step 100 | Loss 2.9652 | Elapsed 6.9s
+[TRAIN] Epoch 7 | Step 150 | Loss 3.0041 | Elapsed 10.3s
+[TRAIN] Epoch 7 | Step 200 | Loss 3.0595 | Elapsed 13.7s
+  → Epoch 7 train avg loss: 3.0482
+[EVAL] Epoch 7 | Step 0 | Loss 3.1631 | Elapsed 0.0s
+  → Epoch 7 val avg loss: 3.0817
+Epoch 8 | Train Loss: 3.0482 | Val Loss: 3.0817 | Val Acc: 0.6381 | Confidence: 0.4993
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 7)
+[TRAIN] Epoch 8 | Step 0 | Loss 2.8379 | Elapsed 0.1s
+[TRAIN] Epoch 8 | Step 50 | Loss 2.9412 | Elapsed 3.5s
+[TRAIN] Epoch 8 | Step 100 | Loss 2.9238 | Elapsed 7.0s
+[TRAIN] Epoch 8 | Step 150 | Loss 2.8431 | Elapsed 10.6s
+[TRAIN] Epoch 8 | Step 200 | Loss 2.7700 | Elapsed 14.2s
+  → Epoch 8 train avg loss: 2.8524
+[EVAL] Epoch 8 | Step 0 | Loss 3.0609 | Elapsed 0.0s
+  → Epoch 8 val avg loss: 2.9943
+Epoch 9 | Train Loss: 2.8524 | Val Loss: 2.9943 | Val Acc: 0.6508 | Confidence: 0.5189
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 8)
+[TRAIN] Epoch 9 | Step 0 | Loss 2.5382 | Elapsed 0.1s
+[TRAIN] Epoch 9 | Step 50 | Loss 2.6747 | Elapsed 3.6s
+[TRAIN] Epoch 9 | Step 100 | Loss 2.6240 | Elapsed 7.1s
+[TRAIN] Epoch 9 | Step 150 | Loss 2.6455 | Elapsed 10.6s
+[TRAIN] Epoch 9 | Step 200 | Loss 2.6756 | Elapsed 14.0s
+  → Epoch 9 train avg loss: 2.6888
+[EVAL] Epoch 9 | Step 0 | Loss 3.0051 | Elapsed 0.0s
+  → Epoch 9 val avg loss: 2.9412
+Epoch 10 | Train Loss: 2.6888 | Val Loss: 2.9412 | Val Acc: 0.6615 | Confidence: 0.5326
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 9)
+[TRAIN] Epoch 10 | Step 0 | Loss 2.4995 | Elapsed 0.1s
+[TRAIN] Epoch 10 | Step 50 | Loss 2.5259 | Elapsed 3.6s
+[TRAIN] Epoch 10 | Step 100 | Loss 2.5739 | Elapsed 7.1s
+[TRAIN] Epoch 10 | Step 150 | Loss 2.5024 | Elapsed 10.6s
+[TRAIN] Epoch 10 | Step 200 | Loss 2.4739 | Elapsed 14.1s
+  → Epoch 10 train avg loss: 2.5548
+[EVAL] Epoch 10 | Step 0 | Loss 2.9943 | Elapsed 0.0s
+  → Epoch 10 val avg loss: 2.9251
+Epoch 11 | Train Loss: 2.5548 | Val Loss: 2.9251 | Val Acc: 0.6674 | Confidence: 0.5487
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 10)
+[TRAIN] Epoch 11 | Step 0 | Loss 2.4547 | Elapsed 0.1s
+[TRAIN] Epoch 11 | Step 50 | Loss 2.3826 | Elapsed 3.5s
+[TRAIN] Epoch 11 | Step 100 | Loss 2.4670 | Elapsed 7.0s
+[TRAIN] Epoch 11 | Step 150 | Loss 2.4911 | Elapsed 10.4s
+[TRAIN] Epoch 11 | Step 200 | Loss 2.3704 | Elapsed 13.8s
+  → Epoch 11 train avg loss: 2.4438
+[EVAL] Epoch 11 | Step 0 | Loss 2.9555 | Elapsed 0.0s
+  → Epoch 11 val avg loss: 2.9036
+Epoch 12 | Train Loss: 2.4438 | Val Loss: 2.9036 | Val Acc: 0.6697 | Confidence: 0.5592
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 11)
+[TRAIN] Epoch 12 | Step 0 | Loss 2.2866 | Elapsed 0.1s
+[TRAIN] Epoch 12 | Step 50 | Loss 2.3559 | Elapsed 3.5s
+[TRAIN] Epoch 12 | Step 100 | Loss 2.3487 | Elapsed 6.9s
+[TRAIN] Epoch 12 | Step 150 | Loss 2.4632 | Elapsed 10.5s
+[TRAIN] Epoch 12 | Step 200 | Loss 2.3993 | Elapsed 14.0s
+  → Epoch 12 train avg loss: 2.3517
+[EVAL] Epoch 12 | Step 0 | Loss 2.9560 | Elapsed 0.0s
+  → Epoch 12 val avg loss: 2.8942
+Epoch 13 | Train Loss: 2.3517 | Val Loss: 2.8942 | Val Acc: 0.6784 | Confidence: 0.5651
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 12)
+[TRAIN] Epoch 13 | Step 0 | Loss 2.2041 | Elapsed 0.1s
+[TRAIN] Epoch 13 | Step 50 | Loss 2.3292 | Elapsed 3.6s
+[TRAIN] Epoch 13 | Step 100 | Loss 2.2397 | Elapsed 6.9s
+[TRAIN] Epoch 13 | Step 150 | Loss 2.2276 | Elapsed 10.3s
+[TRAIN] Epoch 13 | Step 200 | Loss 2.3274 | Elapsed 13.7s
+  → Epoch 13 train avg loss: 2.2716
+[EVAL] Epoch 13 | Step 0 | Loss 2.9430 | Elapsed 0.0s
+  → Epoch 13 val avg loss: 2.8748
+Epoch 14 | Train Loss: 2.2716 | Val Loss: 2.8748 | Val Acc: 0.6814 | Confidence: 0.5764
+  Checkpoint saved → label_smoothing_0_1_best.pt  (epoch 13)
+[TRAIN] Epoch 14 | Step 0 | Loss 2.1088 | Elapsed 0.1s
+[TRAIN] Epoch 14 | Step 50 | Loss 2.1631 | Elapsed 3.7s
+[TRAIN] Epoch 14 | Step 100 | Loss 2.1875 | Elapsed 7.2s
+[TRAIN] Epoch 14 | Step 150 | Loss 2.2652 | Elapsed 10.5s
+[TRAIN] Epoch 14 | Step 200 | Loss 2.2269 | Elapsed 14.0s
+  → Epoch 14 train avg loss: 2.2030
+[EVAL] Epoch 14 | Step 0 | Loss 2.9551 | Elapsed 0.0s
+  → Epoch 14 val avg loss: 2.8901
+Epoch 15 | Train Loss: 2.2030 | Val Loss: 2.8901 | Val Acc: 0.6812 | Confidence: 0.5768
+  Checkpoint loaded from label_smoothing_0_1_best.pt  (epoch 13)
+
+Test BLEU: 37.50

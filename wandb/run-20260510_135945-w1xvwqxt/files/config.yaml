@@ -1,0 +1,74 @@
+_wandb:
+    value:
+        cli_version: 0.26.1
+        e:
+            isw49wh3f1imilvn0238md2rgz9unvt4:
+                codePath: train.py
+                codePathLocal: train.py
+                cpu_count: 6
+                cpu_count_logical: 12
+                cudaVersion: "13.2"
+                disk:
+                    /:
+                        total: "1081101176832"
+                        used: "96647344128"
+                email: me22b110@smail.iitm.ac.in
+                executable: /home/asher747/da6401_assignment_3/venv/bin/python
+                git:
+                    commit: 5c6ffc3c665c69a0a27bfe1b013b4d4f8ad022ec
+                    remote: https://github.com/boeing314/ME22B110_DL_A3.git
+                gpu: NVIDIA GeForce RTX 4050 Laptop GPU
+                gpu_count: 1
+                gpu_nvidia:
+                    - architecture: Ada
+                      memoryTotal: "6439305216"
+                      name: NVIDIA GeForce RTX 4050 Laptop GPU
+                      uuid: GPU-ed52ea97-707a-0abe-fbad-8d3746083416
+                host: asher747
+                memory:
+                    total: "7959949312"
+                os: Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39
+                program: /home/asher747/da6401_assignment_3/train.py
+                python: CPython 3.12.3
+                root: /home/asher747/da6401_assignment_3
+                startedAt: "2026-05-10T13:59:45.879702Z"
+                writerId: isw49wh3f1imilvn0238md2rgz9unvt4
+        m: []
+        python_version: 3.12.3
+        t:
+            "1":
+                - 1
+                - 33
+                - 49
+                - 51
+            "2":
+                - 1
+                - 33
+                - 49
+                - 51
+            "3":
+                - 2
+                - 13
+                - 16
+            "4": 3.12.3
+            "5": 0.26.1
+            "12": 0.26.1
+            "13": linux-x86_64
+"N":
+    value: 3
+batch_size:
+    value: 128
+d_ff:
+    value: 512
+d_model:
+    value: 256
+dropout:
+    value: 0.1
+num_epochs:
+    value: 15
+num_heads:
+    value: 8
+smoothing:
+    value: 0.1
+warmup_steps:
+    value: 4000

@@ -1,0 +1,118 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+[Transformer] weights loaded from checkpoint_best.pt
+[TRAIN] Epoch 0 | Step 0 | Loss 2.0544 | Elapsed 1.1s
+[TRAIN] Epoch 0 | Step 50 | Loss 2.0402 | Elapsed 4.6s
+[TRAIN] Epoch 0 | Step 100 | Loss 2.0636 | Elapsed 8.0s
+[TRAIN] Epoch 0 | Step 150 | Loss 2.0632 | Elapsed 11.4s
+[TRAIN] Epoch 0 | Step 200 | Loss 2.2036 | Elapsed 14.8s
+  → Epoch 0 train avg loss: 2.0951
+[EVAL] Epoch 0 | Step 0 | Loss 2.8857 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 2.8226
+[TRAIN] Epoch 1 | Step 0 | Loss 1.9780 | Elapsed 0.1s
+[TRAIN] Epoch 1 | Step 50 | Loss 1.9664 | Elapsed 3.4s
+[TRAIN] Epoch 1 | Step 100 | Loss 2.1519 | Elapsed 6.9s
+[TRAIN] Epoch 1 | Step 150 | Loss 2.0589 | Elapsed 10.4s
+[TRAIN] Epoch 1 | Step 200 | Loss 2.0868 | Elapsed 13.7s
+  → Epoch 1 train avg loss: 2.1127
+[EVAL] Epoch 1 | Step 0 | Loss 2.9861 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 2.9002
+[TRAIN] Epoch 2 | Step 0 | Loss 2.0042 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 2.1135 | Elapsed 3.5s
+[TRAIN] Epoch 2 | Step 100 | Loss 2.1274 | Elapsed 6.9s
+[TRAIN] Epoch 2 | Step 150 | Loss 2.2712 | Elapsed 10.3s
+[TRAIN] Epoch 2 | Step 200 | Loss 2.3095 | Elapsed 13.6s
+  → Epoch 2 train avg loss: 2.1831
+[EVAL] Epoch 2 | Step 0 | Loss 2.9549 | Elapsed 0.0s
+  → Epoch 2 val avg loss: 2.9022
+[TRAIN] Epoch 3 | Step 0 | Loss 2.0693 | Elapsed 0.1s
+[TRAIN] Epoch 3 | Step 50 | Loss 2.2239 | Elapsed 3.5s
+[TRAIN] Epoch 3 | Step 100 | Loss 2.2849 | Elapsed 6.9s
+[TRAIN] Epoch 3 | Step 150 | Loss 2.2744 | Elapsed 10.3s
+[TRAIN] Epoch 3 | Step 200 | Loss 2.3881 | Elapsed 13.6s
+  → Epoch 3 train avg loss: 2.2664
+[EVAL] Epoch 3 | Step 0 | Loss 3.0259 | Elapsed 0.0s
+  → Epoch 3 val avg loss: 2.9617
+[TRAIN] Epoch 4 | Step 0 | Loss 2.3098 | Elapsed 0.1s
+[TRAIN] Epoch 4 | Step 50 | Loss 2.3175 | Elapsed 3.6s
+[TRAIN] Epoch 4 | Step 100 | Loss 2.3405 | Elapsed 6.9s
+[TRAIN] Epoch 4 | Step 150 | Loss 2.3749 | Elapsed 10.2s
+[TRAIN] Epoch 4 | Step 200 | Loss 2.2736 | Elapsed 13.6s
+  → Epoch 4 train avg loss: 2.3156
+[EVAL] Epoch 4 | Step 0 | Loss 3.0304 | Elapsed 0.0s
+  → Epoch 4 val avg loss: 2.9278
+[TRAIN] Epoch 5 | Step 0 | Loss 2.1584 | Elapsed 0.1s
+[TRAIN] Epoch 5 | Step 50 | Loss 2.1804 | Elapsed 3.4s
+[TRAIN] Epoch 5 | Step 100 | Loss 2.2055 | Elapsed 6.8s
+[TRAIN] Epoch 5 | Step 150 | Loss 2.2624 | Elapsed 10.3s
+[TRAIN] Epoch 5 | Step 200 | Loss 2.3694 | Elapsed 13.8s
+  → Epoch 5 train avg loss: 2.2226
+[EVAL] Epoch 5 | Step 0 | Loss 2.9834 | Elapsed 0.0s
+  → Epoch 5 val avg loss: 2.9301
+[TRAIN] Epoch 6 | Step 0 | Loss 2.1128 | Elapsed 0.1s
+[TRAIN] Epoch 6 | Step 50 | Loss 2.0046 | Elapsed 3.5s
+[TRAIN] Epoch 6 | Step 100 | Loss 2.0728 | Elapsed 6.8s
+[TRAIN] Epoch 6 | Step 150 | Loss 2.1589 | Elapsed 10.2s
+[TRAIN] Epoch 6 | Step 200 | Loss 2.1851 | Elapsed 13.5s
+  → Epoch 6 train avg loss: 2.0998
+[EVAL] Epoch 6 | Step 0 | Loss 2.9723 | Elapsed 0.0s
+  → Epoch 6 val avg loss: 2.9301
+[TRAIN] Epoch 7 | Step 0 | Loss 1.9144 | Elapsed 0.1s
+[TRAIN] Epoch 7 | Step 50 | Loss 1.9773 | Elapsed 3.4s
+[TRAIN] Epoch 7 | Step 100 | Loss 1.9836 | Elapsed 6.8s
+[TRAIN] Epoch 7 | Step 150 | Loss 2.0583 | Elapsed 10.1s
+[TRAIN] Epoch 7 | Step 200 | Loss 2.0612 | Elapsed 13.5s
+  → Epoch 7 train avg loss: 1.9975
+[EVAL] Epoch 7 | Step 0 | Loss 3.0174 | Elapsed 0.0s
+  → Epoch 7 val avg loss: 2.9257
+[TRAIN] Epoch 8 | Step 0 | Loss 1.8665 | Elapsed 0.1s
+[TRAIN] Epoch 8 | Step 50 | Loss 1.8347 | Elapsed 3.5s
+[TRAIN] Epoch 8 | Step 100 | Loss 1.9771 | Elapsed 7.0s
+[TRAIN] Epoch 8 | Step 150 | Loss 2.0076 | Elapsed 10.4s
+[TRAIN] Epoch 8 | Step 200 | Loss 1.9440 | Elapsed 13.8s
+  → Epoch 8 train avg loss: 1.9123
+[EVAL] Epoch 8 | Step 0 | Loss 3.0157 | Elapsed 0.0s
+  → Epoch 8 val avg loss: 2.9565
+[TRAIN] Epoch 9 | Step 0 | Loss 1.7867 | Elapsed 0.1s
+[TRAIN] Epoch 9 | Step 50 | Loss 1.8014 | Elapsed 3.5s
+[TRAIN] Epoch 9 | Step 100 | Loss 1.8087 | Elapsed 6.9s
+[TRAIN] Epoch 9 | Step 150 | Loss 1.8767 | Elapsed 10.5s
+[TRAIN] Epoch 9 | Step 200 | Loss 1.8606 | Elapsed 13.9s
+  → Epoch 9 train avg loss: 1.8467
+[EVAL] Epoch 9 | Step 0 | Loss 2.9812 | Elapsed 0.0s
+  → Epoch 9 val avg loss: 2.9282
+[TRAIN] Epoch 10 | Step 0 | Loss 1.6753 | Elapsed 0.1s
+[TRAIN] Epoch 10 | Step 50 | Loss 1.7412 | Elapsed 3.5s
+[TRAIN] Epoch 10 | Step 100 | Loss 1.7812 | Elapsed 7.0s
+[TRAIN] Epoch 10 | Step 150 | Loss 1.8060 | Elapsed 10.5s
+[TRAIN] Epoch 10 | Step 200 | Loss 1.8584 | Elapsed 13.8s
+  → Epoch 10 train avg loss: 1.7899
+[EVAL] Epoch 10 | Step 0 | Loss 3.0512 | Elapsed 0.0s
+  → Epoch 10 val avg loss: 2.9768
+[TRAIN] Epoch 11 | Step 0 | Loss 1.7297 | Elapsed 0.1s
+[TRAIN] Epoch 11 | Step 50 | Loss 1.7087 | Elapsed 3.5s
+[TRAIN] Epoch 11 | Step 100 | Loss 1.7271 | Elapsed 6.9s
+[TRAIN] Epoch 11 | Step 150 | Loss 1.7715 | Elapsed 10.2s
+[TRAIN] Epoch 11 | Step 200 | Loss 1.8164 | Elapsed 13.6s
+  → Epoch 11 train avg loss: 1.7412
+[EVAL] Epoch 11 | Step 0 | Loss 3.0838 | Elapsed 0.0s
+  → Epoch 11 val avg loss: 3.0153
+[TRAIN] Epoch 12 | Step 0 | Loss 1.6301 | Elapsed 0.1s
+[TRAIN] Epoch 12 | Step 50 | Loss 1.6540 | Elapsed 3.4s
+[TRAIN] Epoch 12 | Step 100 | Loss 1.6397 | Elapsed 6.7s
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 588, in <module>
+    run_experiment_noam()
+  File "/home/asher747/da6401_assignment_3/train.py", line 570, in run_experiment_noam
+    train_loss = run_epoch(train_loader, model, loss_fn, optimizer, scheduler,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 130, in run_epoch
+    loss.backward()
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/_tensor.py", line 631, in backward
+    torch.autograd.backward(
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/autograd/__init__.py", line 381, in backward
+    _engine_run_backward(
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/autograd/graph.py", line 869, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

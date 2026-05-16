@@ -1,0 +1,191 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] building vocab from Multi30k dataset ...
+[TRAIN] Epoch 0 | Step 0 | Loss 9.2612 | Elapsed 1.2s
+[TRAIN] Epoch 0 | Step 50 | Loss 7.5564 | Elapsed 6.0s
+[TRAIN] Epoch 0 | Step 100 | Loss 5.5756 | Elapsed 10.8s
+[TRAIN] Epoch 0 | Step 150 | Loss 5.2120 | Elapsed 15.7s
+[TRAIN] Epoch 0 | Step 200 | Loss 4.8938 | Elapsed 20.5s
+  → Epoch 0 train avg loss: 6.2302
+[EVAL] Epoch 0 | Step 0 | Loss 4.7414 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 4.7128
+[TRAIN] Epoch 1 | Step 0 | Loss 4.7304 | Elapsed 0.1s
+[TRAIN] Epoch 1 | Step 50 | Loss 4.5015 | Elapsed 4.9s
+[TRAIN] Epoch 1 | Step 100 | Loss 4.2756 | Elapsed 9.8s
+[TRAIN] Epoch 1 | Step 150 | Loss 4.3199 | Elapsed 14.6s
+[TRAIN] Epoch 1 | Step 200 | Loss 4.1675 | Elapsed 19.5s
+  → Epoch 1 train avg loss: 4.3933
+[EVAL] Epoch 1 | Step 0 | Loss 4.0788 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 4.0150
+[TRAIN] Epoch 2 | Step 0 | Loss 4.1111 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 4.0718 | Elapsed 5.0s
+[TRAIN] Epoch 2 | Step 100 | Loss 3.8859 | Elapsed 10.0s
+[TRAIN] Epoch 2 | Step 150 | Loss 3.8186 | Elapsed 14.8s
+[TRAIN] Epoch 2 | Step 200 | Loss 3.7839 | Elapsed 19.6s
+  → Epoch 2 train avg loss: 3.8940
+[EVAL] Epoch 2 | Step 0 | Loss 3.8430 | Elapsed 0.0s
+  → Epoch 2 val avg loss: 3.7768
+[TRAIN] Epoch 3 | Step 0 | Loss 3.9101 | Elapsed 0.1s
+[TRAIN] Epoch 3 | Step 50 | Loss 3.7504 | Elapsed 5.0s
+[TRAIN] Epoch 3 | Step 100 | Loss 3.8780 | Elapsed 9.7s
+[TRAIN] Epoch 3 | Step 150 | Loss 3.9199 | Elapsed 14.6s
+[TRAIN] Epoch 3 | Step 200 | Loss 3.9987 | Elapsed 19.4s
+  → Epoch 3 train avg loss: 3.7737
+[EVAL] Epoch 3 | Step 0 | Loss 3.9633 | Elapsed 0.0s
+  → Epoch 3 val avg loss: 3.9075
+[TRAIN] Epoch 4 | Step 0 | Loss 3.7658 | Elapsed 0.1s
+[TRAIN] Epoch 4 | Step 50 | Loss 3.9282 | Elapsed 5.0s
+[TRAIN] Epoch 4 | Step 100 | Loss 3.8291 | Elapsed 9.8s
+[TRAIN] Epoch 4 | Step 150 | Loss 3.7774 | Elapsed 14.6s
+[TRAIN] Epoch 4 | Step 200 | Loss 4.0644 | Elapsed 19.5s
+  → Epoch 4 train avg loss: 3.9131
+[EVAL] Epoch 4 | Step 0 | Loss 4.0630 | Elapsed 0.0s
+  → Epoch 4 val avg loss: 4.0059
+[TRAIN] Epoch 5 | Step 0 | Loss 3.8514 | Elapsed 0.1s
+[TRAIN] Epoch 5 | Step 50 | Loss 4.0399 | Elapsed 4.9s
+[TRAIN] Epoch 5 | Step 100 | Loss 3.9019 | Elapsed 9.6s
+[TRAIN] Epoch 5 | Step 150 | Loss 4.0393 | Elapsed 14.4s
+[TRAIN] Epoch 5 | Step 200 | Loss 4.1288 | Elapsed 19.2s
+  → Epoch 5 train avg loss: 3.9851
+[EVAL] Epoch 5 | Step 0 | Loss 4.1567 | Elapsed 0.0s
+  → Epoch 5 val avg loss: 4.1128
+[TRAIN] Epoch 6 | Step 0 | Loss 3.8832 | Elapsed 0.1s
+[TRAIN] Epoch 6 | Step 50 | Loss 4.0017 | Elapsed 4.9s
+[TRAIN] Epoch 6 | Step 100 | Loss 3.9939 | Elapsed 9.7s
+[TRAIN] Epoch 6 | Step 150 | Loss 4.1254 | Elapsed 14.6s
+[TRAIN] Epoch 6 | Step 200 | Loss 3.9872 | Elapsed 19.2s
+  → Epoch 6 train avg loss: 3.9988
+[EVAL] Epoch 6 | Step 0 | Loss 4.1069 | Elapsed 0.0s
+  → Epoch 6 val avg loss: 4.0162
+[TRAIN] Epoch 7 | Step 0 | Loss 3.7817 | Elapsed 0.1s
+[TRAIN] Epoch 7 | Step 50 | Loss 4.0655 | Elapsed 4.9s
+[TRAIN] Epoch 7 | Step 100 | Loss 3.9146 | Elapsed 9.7s
+[TRAIN] Epoch 7 | Step 150 | Loss 3.9311 | Elapsed 14.6s
+[TRAIN] Epoch 7 | Step 200 | Loss 3.9744 | Elapsed 19.5s
+  → Epoch 7 train avg loss: 3.9511
+[EVAL] Epoch 7 | Step 0 | Loss 4.1004 | Elapsed 0.0s
+  → Epoch 7 val avg loss: 4.0139
+[TRAIN] Epoch 8 | Step 0 | Loss 3.7883 | Elapsed 0.1s
+[TRAIN] Epoch 8 | Step 50 | Loss 3.9520 | Elapsed 5.0s
+[TRAIN] Epoch 8 | Step 100 | Loss 3.9796 | Elapsed 9.7s
+[TRAIN] Epoch 8 | Step 150 | Loss 3.9012 | Elapsed 14.5s
+[TRAIN] Epoch 8 | Step 200 | Loss 4.0155 | Elapsed 19.3s
+  → Epoch 8 train avg loss: 3.9026
+[EVAL] Epoch 8 | Step 0 | Loss 4.1306 | Elapsed 0.0s
+  → Epoch 8 val avg loss: 4.0369
+[TRAIN] Epoch 9 | Step 0 | Loss 3.8090 | Elapsed 0.1s
+[TRAIN] Epoch 9 | Step 50 | Loss 3.9385 | Elapsed 4.9s
+[TRAIN] Epoch 9 | Step 100 | Loss 3.7953 | Elapsed 9.7s
+[TRAIN] Epoch 9 | Step 150 | Loss 4.0182 | Elapsed 14.4s
+[TRAIN] Epoch 9 | Step 200 | Loss 3.8776 | Elapsed 19.3s
+  → Epoch 9 train avg loss: 3.8766
+[EVAL] Epoch 9 | Step 0 | Loss 4.0862 | Elapsed 0.0s
+  → Epoch 9 val avg loss: 4.0180
+[TRAIN] Epoch 10 | Step 0 | Loss 3.8193 | Elapsed 0.1s
+[TRAIN] Epoch 10 | Step 50 | Loss 3.7873 | Elapsed 4.9s
+[TRAIN] Epoch 10 | Step 100 | Loss 3.7483 | Elapsed 9.6s
+[TRAIN] Epoch 10 | Step 150 | Loss 3.8146 | Elapsed 14.3s
+[TRAIN] Epoch 10 | Step 200 | Loss 3.8580 | Elapsed 19.1s
+  → Epoch 10 train avg loss: 3.8050
+[EVAL] Epoch 10 | Step 0 | Loss 4.0328 | Elapsed 0.0s
+  → Epoch 10 val avg loss: 3.9846
+[TRAIN] Epoch 11 | Step 0 | Loss 3.6423 | Elapsed 0.1s
+[TRAIN] Epoch 11 | Step 50 | Loss 3.7655 | Elapsed 4.9s
+[TRAIN] Epoch 11 | Step 100 | Loss 3.8198 | Elapsed 9.5s
+[TRAIN] Epoch 11 | Step 150 | Loss 3.7727 | Elapsed 14.4s
+[TRAIN] Epoch 11 | Step 200 | Loss 3.8352 | Elapsed 19.2s
+  → Epoch 11 train avg loss: 3.7470
+[EVAL] Epoch 11 | Step 0 | Loss 4.1079 | Elapsed 0.0s
+  → Epoch 11 val avg loss: 4.0344
+[TRAIN] Epoch 12 | Step 0 | Loss 3.7130 | Elapsed 0.1s
+[TRAIN] Epoch 12 | Step 50 | Loss 3.7305 | Elapsed 5.0s
+[TRAIN] Epoch 12 | Step 100 | Loss 3.6429 | Elapsed 9.8s
+[TRAIN] Epoch 12 | Step 150 | Loss 3.7123 | Elapsed 14.5s
+[TRAIN] Epoch 12 | Step 200 | Loss 3.6927 | Elapsed 19.3s
+  → Epoch 12 train avg loss: 3.7121
+[EVAL] Epoch 12 | Step 0 | Loss 3.9721 | Elapsed 0.0s
+  → Epoch 12 val avg loss: 3.9037
+[TRAIN] Epoch 13 | Step 0 | Loss 3.5454 | Elapsed 0.1s
+[TRAIN] Epoch 13 | Step 50 | Loss 3.6544 | Elapsed 4.9s
+[TRAIN] Epoch 13 | Step 100 | Loss 3.5954 | Elapsed 9.6s
+[TRAIN] Epoch 13 | Step 150 | Loss 3.5889 | Elapsed 14.6s
+[TRAIN] Epoch 13 | Step 200 | Loss 3.6624 | Elapsed 19.3s
+  → Epoch 13 train avg loss: 3.6234
+[EVAL] Epoch 13 | Step 0 | Loss 3.9935 | Elapsed 0.0s
+  → Epoch 13 val avg loss: 3.9237
+[TRAIN] Epoch 14 | Step 0 | Loss 3.5395 | Elapsed 0.1s
+[TRAIN] Epoch 14 | Step 50 | Loss 3.6796 | Elapsed 5.0s
+[TRAIN] Epoch 14 | Step 100 | Loss 3.6041 | Elapsed 9.9s
+[TRAIN] Epoch 14 | Step 150 | Loss 3.5841 | Elapsed 14.5s
+[TRAIN] Epoch 14 | Step 200 | Loss 3.5578 | Elapsed 19.5s
+  → Epoch 14 train avg loss: 3.5848
+[EVAL] Epoch 14 | Step 0 | Loss 3.9701 | Elapsed 0.0s
+  → Epoch 14 val avg loss: 3.9058
+[TRAIN] Epoch 15 | Step 0 | Loss 3.3939 | Elapsed 0.1s
+[TRAIN] Epoch 15 | Step 50 | Loss 3.3981 | Elapsed 4.9s
+[TRAIN] Epoch 15 | Step 100 | Loss 3.4778 | Elapsed 9.7s
+[TRAIN] Epoch 15 | Step 150 | Loss 3.4792 | Elapsed 14.5s
+[TRAIN] Epoch 15 | Step 200 | Loss 3.5430 | Elapsed 19.4s
+  → Epoch 15 train avg loss: 3.5278
+[EVAL] Epoch 15 | Step 0 | Loss 3.9387 | Elapsed 0.0s
+  → Epoch 15 val avg loss: 3.8579
+[TRAIN] Epoch 16 | Step 0 | Loss 3.5588 | Elapsed 0.1s
+[TRAIN] Epoch 16 | Step 50 | Loss 3.4700 | Elapsed 4.9s
+[TRAIN] Epoch 16 | Step 100 | Loss 3.4406 | Elapsed 9.8s
+[TRAIN] Epoch 16 | Step 150 | Loss 3.5436 | Elapsed 14.7s
+[TRAIN] Epoch 16 | Step 200 | Loss 3.5049 | Elapsed 19.3s
+  → Epoch 16 train avg loss: 3.4856
+[EVAL] Epoch 16 | Step 0 | Loss 3.9567 | Elapsed 0.0s
+  → Epoch 16 val avg loss: 3.8659
+[TRAIN] Epoch 17 | Step 0 | Loss 3.4134 | Elapsed 0.1s
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 711, in <module>
+    run_experiment_scaled()
+  File "/home/asher747/da6401_assignment_3/train.py", line 670, in run_experiment_scaled
+    train_loss = run_epoch(
+                 ^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 119, in run_epoch
+    logits = model(src, tgt_in, src_mask, tgt_mask)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/model.py", line 654, in forward
+    return self.decode(memory, src_mask, tgt, tgt_mask)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/model.py", line 643, in decode
+    x = self.decoder(x, memory, src_mask, tgt_mask)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/model.py", line 418, in forward
+    x = layer(x, memory, src_mask, tgt_mask)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/model.py", line 352, in forward
+    self_attn_out = self.self_attn(
+                    ^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/model.py", line 171, in forward
+    attn_out, self.attn_weights = scaled_dot_product_attention(Q, K, V, mask, self.use_scaling)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/model.py", line 51, in scaled_dot_product_attention
+    output = torch.matmul(attn_w, V)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

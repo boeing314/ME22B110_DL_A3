@@ -1,0 +1,203 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+[Transformer] weights loaded from checkpoint_best.pt
+[TRAIN] Epoch 0 | Step 0 | Loss 2.0345 | Elapsed 1.3s
+[TRAIN] Epoch 0 | Step 50 | Loss 2.1628 | Elapsed 5.1s
+[TRAIN] Epoch 0 | Step 100 | Loss 2.1613 | Elapsed 8.9s
+[TRAIN] Epoch 0 | Step 150 | Loss 2.0384 | Elapsed 12.4s
+[TRAIN] Epoch 0 | Step 200 | Loss 2.0738 | Elapsed 15.9s
+  → Epoch 0 train avg loss: 2.0861
+[EVAL] Epoch 0 | Step 0 | Loss 2.8837 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 2.8129
+[TRAIN] Epoch 1 | Step 0 | Loss 1.9301 | Elapsed 0.1s
+[TRAIN] Epoch 1 | Step 50 | Loss 2.0769 | Elapsed 3.6s
+[TRAIN] Epoch 1 | Step 100 | Loss 2.0365 | Elapsed 6.9s
+[TRAIN] Epoch 1 | Step 150 | Loss 2.0283 | Elapsed 10.3s
+[TRAIN] Epoch 1 | Step 200 | Loss 2.0296 | Elapsed 13.8s
+  → Epoch 1 train avg loss: 2.0307
+[EVAL] Epoch 1 | Step 0 | Loss 2.8705 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 2.8051
+[TRAIN] Epoch 2 | Step 0 | Loss 1.9910 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 1.9836 | Elapsed 3.4s
+[TRAIN] Epoch 2 | Step 100 | Loss 2.1116 | Elapsed 6.8s
+[TRAIN] Epoch 2 | Step 150 | Loss 2.0000 | Elapsed 10.2s
+[TRAIN] Epoch 2 | Step 200 | Loss 2.0308 | Elapsed 13.6s
+  → Epoch 2 train avg loss: 1.9968
+[EVAL] Epoch 2 | Step 0 | Loss 2.8875 | Elapsed 0.0s
+  → Epoch 2 val avg loss: 2.8258
+[TRAIN] Epoch 3 | Step 0 | Loss 1.9115 | Elapsed 0.1s
+[TRAIN] Epoch 3 | Step 50 | Loss 1.9088 | Elapsed 3.5s
+[TRAIN] Epoch 3 | Step 100 | Loss 2.0027 | Elapsed 6.9s
+[TRAIN] Epoch 3 | Step 150 | Loss 1.9490 | Elapsed 10.4s
+[TRAIN] Epoch 3 | Step 200 | Loss 1.9539 | Elapsed 13.9s
+  → Epoch 3 train avg loss: 1.9680
+[EVAL] Epoch 3 | Step 0 | Loss 2.8896 | Elapsed 0.0s
+  → Epoch 3 val avg loss: 2.8212
+[TRAIN] Epoch 4 | Step 0 | Loss 1.9300 | Elapsed 0.1s
+[TRAIN] Epoch 4 | Step 50 | Loss 1.9417 | Elapsed 3.5s
+[TRAIN] Epoch 4 | Step 100 | Loss 1.9375 | Elapsed 6.9s
+[TRAIN] Epoch 4 | Step 150 | Loss 1.9518 | Elapsed 10.4s
+[TRAIN] Epoch 4 | Step 200 | Loss 2.0236 | Elapsed 13.7s
+  → Epoch 4 train avg loss: 1.9427
+[EVAL] Epoch 4 | Step 0 | Loss 2.9336 | Elapsed 0.0s
+  → Epoch 4 val avg loss: 2.8623
+[TRAIN] Epoch 5 | Step 0 | Loss 1.9266 | Elapsed 0.1s
+[TRAIN] Epoch 5 | Step 50 | Loss 1.9239 | Elapsed 3.5s
+[TRAIN] Epoch 5 | Step 100 | Loss 1.8961 | Elapsed 6.8s
+[TRAIN] Epoch 5 | Step 150 | Loss 1.9422 | Elapsed 10.2s
+[TRAIN] Epoch 5 | Step 200 | Loss 1.8802 | Elapsed 13.7s
+  → Epoch 5 train avg loss: 1.9165
+[EVAL] Epoch 5 | Step 0 | Loss 2.9299 | Elapsed 0.0s
+  → Epoch 5 val avg loss: 2.8570
+[TRAIN] Epoch 6 | Step 0 | Loss 1.8950 | Elapsed 0.1s
+[TRAIN] Epoch 6 | Step 50 | Loss 1.8715 | Elapsed 3.5s
+[TRAIN] Epoch 6 | Step 100 | Loss 1.8583 | Elapsed 6.8s
+[TRAIN] Epoch 6 | Step 150 | Loss 1.8626 | Elapsed 10.2s
+[TRAIN] Epoch 6 | Step 200 | Loss 1.8899 | Elapsed 13.5s
+  → Epoch 6 train avg loss: 1.8958
+[EVAL] Epoch 6 | Step 0 | Loss 2.9495 | Elapsed 0.0s
+  → Epoch 6 val avg loss: 2.8747
+[TRAIN] Epoch 7 | Step 0 | Loss 1.8884 | Elapsed 0.1s
+[TRAIN] Epoch 7 | Step 50 | Loss 1.7961 | Elapsed 3.6s
+[TRAIN] Epoch 7 | Step 100 | Loss 1.8928 | Elapsed 7.1s
+[TRAIN] Epoch 7 | Step 150 | Loss 1.9139 | Elapsed 10.4s
+[TRAIN] Epoch 7 | Step 200 | Loss 1.8637 | Elapsed 13.9s
+  → Epoch 7 train avg loss: 1.8753
+[EVAL] Epoch 7 | Step 0 | Loss 2.9824 | Elapsed 0.0s
+  → Epoch 7 val avg loss: 2.9207
+[TRAIN] Epoch 8 | Step 0 | Loss 1.8110 | Elapsed 0.1s
+[TRAIN] Epoch 8 | Step 50 | Loss 1.7827 | Elapsed 3.6s
+[TRAIN] Epoch 8 | Step 100 | Loss 1.8545 | Elapsed 7.1s
+[TRAIN] Epoch 8 | Step 150 | Loss 1.8352 | Elapsed 10.4s
+[TRAIN] Epoch 8 | Step 200 | Loss 1.8763 | Elapsed 13.7s
+  → Epoch 8 train avg loss: 1.8568
+[EVAL] Epoch 8 | Step 0 | Loss 2.9811 | Elapsed 0.0s
+  → Epoch 8 val avg loss: 2.9173
+[TRAIN] Epoch 9 | Step 0 | Loss 1.7656 | Elapsed 0.1s
+[TRAIN] Epoch 9 | Step 50 | Loss 1.8295 | Elapsed 3.4s
+[TRAIN] Epoch 9 | Step 100 | Loss 1.8134 | Elapsed 7.0s
+[TRAIN] Epoch 9 | Step 150 | Loss 1.8470 | Elapsed 10.5s
+[TRAIN] Epoch 9 | Step 200 | Loss 1.9286 | Elapsed 14.0s
+  → Epoch 9 train avg loss: 1.8403
+[EVAL] Epoch 9 | Step 0 | Loss 3.0340 | Elapsed 0.0s
+  → Epoch 9 val avg loss: 2.9413
+[TRAIN] Epoch 10 | Step 0 | Loss 1.7322 | Elapsed 0.1s
+[TRAIN] Epoch 10 | Step 50 | Loss 1.7933 | Elapsed 3.5s
+[TRAIN] Epoch 10 | Step 100 | Loss 1.8087 | Elapsed 7.0s
+[TRAIN] Epoch 10 | Step 150 | Loss 1.8446 | Elapsed 10.4s
+[TRAIN] Epoch 10 | Step 200 | Loss 1.8239 | Elapsed 13.8s
+  → Epoch 10 train avg loss: 1.8239
+[EVAL] Epoch 10 | Step 0 | Loss 2.9802 | Elapsed 0.0s
+  → Epoch 10 val avg loss: 2.9254
+[TRAIN] Epoch 11 | Step 0 | Loss 1.7890 | Elapsed 0.1s
+[TRAIN] Epoch 11 | Step 50 | Loss 1.8046 | Elapsed 3.6s
+[TRAIN] Epoch 11 | Step 100 | Loss 1.7754 | Elapsed 7.0s
+[TRAIN] Epoch 11 | Step 150 | Loss 1.8336 | Elapsed 10.4s
+[TRAIN] Epoch 11 | Step 200 | Loss 1.8861 | Elapsed 13.9s
+  → Epoch 11 train avg loss: 1.8096
+[EVAL] Epoch 11 | Step 0 | Loss 3.0320 | Elapsed 0.0s
+  → Epoch 11 val avg loss: 2.9694
+[TRAIN] Epoch 12 | Step 0 | Loss 1.7367 | Elapsed 0.1s
+[TRAIN] Epoch 12 | Step 50 | Loss 1.7444 | Elapsed 3.5s
+[TRAIN] Epoch 12 | Step 100 | Loss 1.8098 | Elapsed 6.9s
+[TRAIN] Epoch 12 | Step 150 | Loss 1.8399 | Elapsed 10.4s
+[TRAIN] Epoch 12 | Step 200 | Loss 1.8861 | Elapsed 13.9s
+  → Epoch 12 train avg loss: 1.7960
+[EVAL] Epoch 12 | Step 0 | Loss 3.0843 | Elapsed 0.0s
+  → Epoch 12 val avg loss: 3.0071
+[TRAIN] Epoch 13 | Step 0 | Loss 1.7264 | Elapsed 0.1s
+[TRAIN] Epoch 13 | Step 50 | Loss 1.7324 | Elapsed 3.5s
+[TRAIN] Epoch 13 | Step 100 | Loss 1.8314 | Elapsed 6.9s
+[TRAIN] Epoch 13 | Step 150 | Loss 1.8072 | Elapsed 10.5s
+[TRAIN] Epoch 13 | Step 200 | Loss 1.8227 | Elapsed 14.0s
+  → Epoch 13 train avg loss: 1.7879
+[EVAL] Epoch 13 | Step 0 | Loss 3.0648 | Elapsed 0.0s
+  → Epoch 13 val avg loss: 3.0067
+[TRAIN] Epoch 14 | Step 0 | Loss 1.7557 | Elapsed 0.1s
+[TRAIN] Epoch 14 | Step 50 | Loss 1.7322 | Elapsed 3.6s
+[TRAIN] Epoch 14 | Step 100 | Loss 1.8133 | Elapsed 7.0s
+[TRAIN] Epoch 14 | Step 150 | Loss 1.8051 | Elapsed 10.4s
+[TRAIN] Epoch 14 | Step 200 | Loss 1.8363 | Elapsed 13.9s
+  → Epoch 14 train avg loss: 1.7787
+[EVAL] Epoch 14 | Step 0 | Loss 3.0587 | Elapsed 0.0s
+  → Epoch 14 val avg loss: 2.9889
+[TRAIN] Epoch 15 | Step 0 | Loss 1.6691 | Elapsed 0.1s
+[TRAIN] Epoch 15 | Step 50 | Loss 1.7425 | Elapsed 3.5s
+[TRAIN] Epoch 15 | Step 100 | Loss 1.7987 | Elapsed 6.9s
+[TRAIN] Epoch 15 | Step 150 | Loss 1.8005 | Elapsed 10.4s
+[TRAIN] Epoch 15 | Step 200 | Loss 1.7942 | Elapsed 13.8s
+  → Epoch 15 train avg loss: 1.7685
+[EVAL] Epoch 15 | Step 0 | Loss 3.0873 | Elapsed 0.0s
+  → Epoch 15 val avg loss: 3.0333
+[TRAIN] Epoch 16 | Step 0 | Loss 1.6735 | Elapsed 0.1s
+[TRAIN] Epoch 16 | Step 50 | Loss 1.6804 | Elapsed 3.6s
+[TRAIN] Epoch 16 | Step 100 | Loss 1.7695 | Elapsed 7.0s
+[TRAIN] Epoch 16 | Step 150 | Loss 1.7442 | Elapsed 10.4s
+[TRAIN] Epoch 16 | Step 200 | Loss 1.8255 | Elapsed 13.8s
+  → Epoch 16 train avg loss: 1.7635
+[EVAL] Epoch 16 | Step 0 | Loss 3.0795 | Elapsed 0.0s
+  → Epoch 16 val avg loss: 3.0104
+[TRAIN] Epoch 17 | Step 0 | Loss 1.6654 | Elapsed 0.1s
+[TRAIN] Epoch 17 | Step 50 | Loss 1.7090 | Elapsed 3.6s
+[TRAIN] Epoch 17 | Step 100 | Loss 1.7233 | Elapsed 7.0s
+[TRAIN] Epoch 17 | Step 150 | Loss 1.7943 | Elapsed 10.3s
+[TRAIN] Epoch 17 | Step 200 | Loss 1.7869 | Elapsed 13.8s
+  → Epoch 17 train avg loss: 1.7543
+[EVAL] Epoch 17 | Step 0 | Loss 3.1059 | Elapsed 0.0s
+  → Epoch 17 val avg loss: 3.0275
+[TRAIN] Epoch 18 | Step 0 | Loss 1.6707 | Elapsed 0.1s
+[TRAIN] Epoch 18 | Step 50 | Loss 1.6849 | Elapsed 3.4s
+[TRAIN] Epoch 18 | Step 100 | Loss 1.7216 | Elapsed 6.9s
+[TRAIN] Epoch 18 | Step 150 | Loss 1.7780 | Elapsed 10.4s
+[TRAIN] Epoch 18 | Step 200 | Loss 1.7831 | Elapsed 13.9s
+  → Epoch 18 train avg loss: 1.7323
+[EVAL] Epoch 18 | Step 0 | Loss 3.0757 | Elapsed 0.0s
+  → Epoch 18 val avg loss: 3.0161
+[TRAIN] Epoch 19 | Step 0 | Loss 1.6423 | Elapsed 0.1s
+[TRAIN] Epoch 19 | Step 50 | Loss 1.6376 | Elapsed 3.5s
+[TRAIN] Epoch 19 | Step 100 | Loss 1.7233 | Elapsed 7.1s
+[TRAIN] Epoch 19 | Step 150 | Loss 1.7014 | Elapsed 10.5s
+[TRAIN] Epoch 19 | Step 200 | Loss 1.7517 | Elapsed 13.9s
+  → Epoch 19 train avg loss: 1.6998
+[EVAL] Epoch 19 | Step 0 | Loss 3.1415 | Elapsed 0.0s
+  → Epoch 19 val avg loss: 3.0427
+[TRAIN] Epoch 20 | Step 0 | Loss 1.6107 | Elapsed 0.1s
+[TRAIN] Epoch 20 | Step 50 | Loss 1.6547 | Elapsed 3.7s
+[TRAIN] Epoch 20 | Step 100 | Loss 1.6533 | Elapsed 7.1s
+[TRAIN] Epoch 20 | Step 150 | Loss 1.6555 | Elapsed 10.5s
+[TRAIN] Epoch 20 | Step 200 | Loss 1.6670 | Elapsed 14.0s
+  → Epoch 20 train avg loss: 1.6684
+[EVAL] Epoch 20 | Step 0 | Loss 3.1639 | Elapsed 0.0s
+  → Epoch 20 val avg loss: 3.0682
+[TRAIN] Epoch 21 | Step 0 | Loss 1.5930 | Elapsed 0.1s
+[TRAIN] Epoch 21 | Step 50 | Loss 1.5911 | Elapsed 3.5s
+[TRAIN] Epoch 21 | Step 100 | Loss 1.6157 | Elapsed 6.9s
+[TRAIN] Epoch 21 | Step 150 | Loss 1.6690 | Elapsed 10.3s
+[TRAIN] Epoch 21 | Step 200 | Loss 1.6856 | Elapsed 13.7s
+  → Epoch 21 train avg loss: 1.6434
+[EVAL] Epoch 21 | Step 0 | Loss 3.1653 | Elapsed 0.0s
+  → Epoch 21 val avg loss: 3.0539
+[TRAIN] Epoch 22 | Step 0 | Loss 1.6194 | Elapsed 0.1s
+[TRAIN] Epoch 22 | Step 50 | Loss 1.5908 | Elapsed 3.6s
+[TRAIN] Epoch 22 | Step 100 | Loss 1.6049 | Elapsed 7.0s
+[TRAIN] Epoch 22 | Step 150 | Loss 1.6399 | Elapsed 10.5s
+[TRAIN] Epoch 22 | Step 200 | Loss 1.6596 | Elapsed 13.9s
+  → Epoch 22 train avg loss: 1.6193
+[EVAL] Epoch 22 | Step 0 | Loss 3.1706 | Elapsed 0.0s
+  → Epoch 22 val avg loss: 3.0929
+[TRAIN] Epoch 23 | Step 0 | Loss 1.5219 | Elapsed 0.1s
+[TRAIN] Epoch 23 | Step 50 | Loss 1.5782 | Elapsed 3.5s
+[TRAIN] Epoch 23 | Step 100 | Loss 1.5809 | Elapsed 6.9s
+[TRAIN] Epoch 23 | Step 150 | Loss 1.6186 | Elapsed 10.3s
+[TRAIN] Epoch 23 | Step 200 | Loss 1.6106 | Elapsed 13.7s
+  → Epoch 23 train avg loss: 1.5978
+[EVAL] Epoch 23 | Step 0 | Loss 3.1734 | Elapsed 0.0s
+  → Epoch 23 val avg loss: 3.1018
+[TRAIN] Epoch 24 | Step 0 | Loss 1.5531 | Elapsed 0.1s
+[TRAIN] Epoch 24 | Step 50 | Loss 1.5563 | Elapsed 3.5s
+[TRAIN] Epoch 24 | Step 100 | Loss 1.5549 | Elapsed 7.0s
+[TRAIN] Epoch 24 | Step 150 | Loss 1.6105 | Elapsed 10.4s
+[TRAIN] Epoch 24 | Step 200 | Loss 1.6113 | Elapsed 13.8s
+  → Epoch 24 train avg loss: 1.5787
+[EVAL] Epoch 24 | Step 0 | Loss 3.1693 | Elapsed 0.0s
+  → Epoch 24 val avg loss: 3.1053

@@ -1,0 +1,53 @@
+Using device: cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+[Transformer] weights loaded from checkpoint_best.pt
+Model parameters: 13,759,813
+[TRAIN] Epoch 0 | Step 0 | Loss 1.9381 | Elapsed 0.9s
+[TRAIN] Epoch 0 | Step 50 | Loss 1.9879 | Elapsed 5.6s
+[TRAIN] Epoch 0 | Step 100 | Loss 2.0357 | Elapsed 10.5s
+[TRAIN] Epoch 0 | Step 150 | Loss 1.9856 | Elapsed 15.5s
+[TRAIN] Epoch 0 | Step 200 | Loss 1.9387 | Elapsed 20.5s
+  → Epoch 0 train avg loss: 1.9872
+[EVAL] Epoch 0 | Step 0 | Loss 2.8766 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 2.8055
+  Checkpoint saved → checkpoint_epoch0.pt  (epoch 0)
+  Checkpoint saved → checkpoint_best.pt  (epoch 0)
+[TRAIN] Epoch 1 | Step 0 | Loss 1.9576 | Elapsed 0.1s
+[TRAIN] Epoch 1 | Step 50 | Loss 1.9965 | Elapsed 5.0s
+[TRAIN] Epoch 1 | Step 100 | Loss 1.9594 | Elapsed 10.0s
+[TRAIN] Epoch 1 | Step 150 | Loss 2.0140 | Elapsed 15.1s
+[TRAIN] Epoch 1 | Step 200 | Loss 1.9360 | Elapsed 20.1s
+  → Epoch 1 train avg loss: 1.9802
+[EVAL] Epoch 1 | Step 0 | Loss 2.8765 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 2.8091
+  Checkpoint saved → checkpoint_epoch1.pt  (epoch 1)
+[TRAIN] Epoch 2 | Step 0 | Loss 1.9612 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 1.9048 | Elapsed 4.9s
+[TRAIN] Epoch 2 | Step 100 | Loss 1.9492 | Elapsed 10.0s
+[TRAIN] Epoch 2 | Step 150 | Loss 1.9697 | Elapsed 15.1s
+[TRAIN] Epoch 2 | Step 200 | Loss 1.9414 | Elapsed 20.2s
+  → Epoch 2 train avg loss: 1.9617
+[EVAL] Epoch 2 | Step 0 | Loss 2.8814 | Elapsed 0.0s
+  → Epoch 2 val avg loss: 2.8184
+  Checkpoint saved → checkpoint_epoch2.pt  (epoch 2)
+[TRAIN] Epoch 3 | Step 0 | Loss 1.8772 | Elapsed 0.1s
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 465, in <module>
+    run_training_experiment()
+  File "/home/asher747/da6401_assignment_3/train.py", line 436, in run_training_experiment
+    train_loss = run_epoch(
+                 ^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 126, in run_epoch
+    loss = loss_fn(logits_flat, targets_flat)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1779, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1790, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 72, in forward
+    n_tokens = (~pad_mask).sum().clamp(min=1)
+               ^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

@@ -1,0 +1,50 @@
+Using device: cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+[TRAIN] Epoch 0 | Step 0 | Loss 9.1966 | Elapsed 1.7s
+[TRAIN] Epoch 0 | Step 50 | Loss 8.8358 | Elapsed 5.1s
+[TRAIN] Epoch 0 | Step 100 | Loss 8.4176 | Elapsed 8.4s
+[TRAIN] Epoch 0 | Step 150 | Loss 7.9661 | Elapsed 11.9s
+[TRAIN] Epoch 0 | Step 200 | Loss 7.3618 | Elapsed 15.3s
+  → Epoch 0 train avg loss: 8.2485
+[EVAL] Epoch 0 | Step 0 | Loss 6.9131 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 6.9181
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 0)
+[TRAIN] Epoch 1 | Step 0 | Loss 6.9342 | Elapsed 0.1s
+[TRAIN] Epoch 1 | Step 50 | Loss 6.4107 | Elapsed 3.6s
+[TRAIN] Epoch 1 | Step 100 | Loss 5.9754 | Elapsed 6.9s
+[TRAIN] Epoch 1 | Step 150 | Loss 5.6572 | Elapsed 10.3s
+[TRAIN] Epoch 1 | Step 200 | Loss 5.3045 | Elapsed 13.7s
+  → Epoch 1 train avg loss: 5.9314
+[EVAL] Epoch 1 | Step 0 | Loss 5.2245 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 5.2077
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 1)
+[TRAIN] Epoch 2 | Step 0 | Loss 5.1882 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 5.0969 | Elapsed 3.5s
+[TRAIN] Epoch 2 | Step 100 | Loss 4.9648 | Elapsed 6.9s
+[TRAIN] Epoch 2 | Step 150 | Loss 4.7573 | Elapsed 10.2s
+[TRAIN] Epoch 2 | Step 200 | Loss 4.7260 | Elapsed 13.6s
+  → Epoch 2 train avg loss: 4.9199
+[EVAL] Epoch 2 | Step 0 | Loss 4.6360 | Elapsed 0.0s
+  → Epoch 2 val avg loss: 4.5948
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 2)
+[TRAIN] Epoch 3 | Step 0 | Loss 4.5087 | Elapsed 0.1s
+[TRAIN] Epoch 3 | Step 50 | Loss 4.5045 | Elapsed 3.4s
+[TRAIN] Epoch 3 | Step 100 | Loss 4.5140 | Elapsed 6.8s
+[TRAIN] Epoch 3 | Step 150 | Loss 4.4724 | Elapsed 10.3s
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 1080, in <module>
+    run_experiment_sinusoidal()
+  File "/home/asher747/da6401_assignment_3/train.py", line 856, in run_experiment_sinusoidal
+    train_loss = run_epoch(
+                 ^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 131, in run_epoch
+    loss.backward()
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/_tensor.py", line 631, in backward
+    torch.autograd.backward(
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/autograd/__init__.py", line 381, in backward
+    _engine_run_backward(
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/autograd/graph.py", line 869, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

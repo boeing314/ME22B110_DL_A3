@@ -1,0 +1,46 @@
+Using device: cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+[Transformer] weights loaded from checkpoint_best.pt
+Model parameters: 13,759,813
+[TRAIN] Epoch 0 | Step 0 | Loss 2.2115 | Elapsed 0.9s
+[TRAIN] Epoch 0 | Step 50 | Loss 2.1248 | Elapsed 6.3s
+[TRAIN] Epoch 0 | Step 100 | Loss 2.1488 | Elapsed 11.2s
+[TRAIN] Epoch 0 | Step 150 | Loss 2.0601 | Elapsed 16.4s
+[TRAIN] Epoch 0 | Step 200 | Loss 2.1343 | Elapsed 21.6s
+  → Epoch 0 train avg loss: 2.0866
+[EVAL] Epoch 0 | Step 0 | Loss 2.8752 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 2.8081
+  Checkpoint saved → checkpoint_epoch0.pt  (epoch 0)
+  Checkpoint saved → checkpoint_best.pt  (epoch 0)
+[TRAIN] Epoch 1 | Step 0 | Loss 1.9949 | Elapsed 0.1s
+[TRAIN] Epoch 1 | Step 50 | Loss 2.0181 | Elapsed 5.1s
+[TRAIN] Epoch 1 | Step 100 | Loss 2.0497 | Elapsed 10.3s
+[TRAIN] Epoch 1 | Step 150 | Loss 2.0162 | Elapsed 15.5s
+[TRAIN] Epoch 1 | Step 200 | Loss 2.0889 | Elapsed 20.7s
+  → Epoch 1 train avg loss: 2.0310
+[EVAL] Epoch 1 | Step 0 | Loss 2.8762 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 2.8061
+  Checkpoint saved → checkpoint_epoch1.pt  (epoch 1)
+  Checkpoint saved → checkpoint_best.pt  (epoch 1)
+[TRAIN] Epoch 2 | Step 0 | Loss 1.9108 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 1.9022 | Elapsed 5.5s
+[TRAIN] Epoch 2 | Step 100 | Loss 2.0591 | Elapsed 10.5s
+[TRAIN] Epoch 2 | Step 150 | Loss 2.0305 | Elapsed 16.0s
+[TRAIN] Epoch 2 | Step 200 | Loss 2.0689 | Elapsed 21.3s
+  → Epoch 2 train avg loss: 1.9971
+[EVAL] Epoch 2 | Step 0 | Loss 2.8916 | Elapsed 0.0s
+  → Epoch 2 val avg loss: 2.8199
+  Checkpoint saved → checkpoint_epoch2.pt  (epoch 2)
+[TRAIN] Epoch 3 | Step 0 | Loss 1.9097 | Elapsed 0.1s
+[TRAIN] Epoch 3 | Step 50 | Loss 1.9445 | Elapsed 5.5s
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 465, in <module>
+    run_training_experiment()
+  File "/home/asher747/da6401_assignment_3/train.py", line 436, in run_training_experiment
+    train_loss = run_epoch(
+                 ^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 137, in run_epoch
+    n_tokens     = (tgt_out != PAD_IDX).sum().item()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

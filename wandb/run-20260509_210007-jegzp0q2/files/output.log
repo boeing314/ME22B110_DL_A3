@@ -1,0 +1,10 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+  Checkpoint loaded from checkpoint_best.pt  (epoch 13)
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/test.py", line 125, in <module>
+    log_attention_heads_wandb(
+  File "/home/asher747/da6401_assignment_3/test.py", line 24, in log_attention_heads_wandb
+    stoi = src_vocab.get_stoi()
+           ^^^^^^^^^^^^^^^^^^
+AttributeError: 'Vocabulary' object has no attribute 'get_stoi'

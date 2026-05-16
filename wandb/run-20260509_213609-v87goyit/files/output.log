@@ -1,0 +1,139 @@
+Using device: cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+[TRAIN] Epoch 0 | Step 0 | Loss 9.2069 | Elapsed 1.1s
+[TRAIN] Epoch 0 | Step 50 | Loss 8.8489 | Elapsed 4.4s
+[TRAIN] Epoch 0 | Step 100 | Loss 8.4507 | Elapsed 7.8s
+[TRAIN] Epoch 0 | Step 150 | Loss 7.9906 | Elapsed 11.0s
+[TRAIN] Epoch 0 | Step 200 | Loss 7.3582 | Elapsed 14.4s
+  → Epoch 0 train avg loss: 8.2780
+[EVAL] Epoch 0 | Step 0 | Loss 6.9412 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 6.9438
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 0)
+[TRAIN] Epoch 1 | Step 0 | Loss 7.0326 | Elapsed 0.3s
+[TRAIN] Epoch 1 | Step 50 | Loss 6.4043 | Elapsed 3.7s
+[TRAIN] Epoch 1 | Step 100 | Loss 5.8656 | Elapsed 7.0s
+[TRAIN] Epoch 1 | Step 150 | Loss 5.6050 | Elapsed 10.4s
+[TRAIN] Epoch 1 | Step 200 | Loss 5.3692 | Elapsed 13.7s
+  → Epoch 1 train avg loss: 5.9414
+[EVAL] Epoch 1 | Step 0 | Loss 5.2153 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 5.2018
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 1)
+[TRAIN] Epoch 2 | Step 0 | Loss 5.1760 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 5.1292 | Elapsed 3.3s
+[TRAIN] Epoch 2 | Step 100 | Loss 4.8945 | Elapsed 6.7s
+[TRAIN] Epoch 2 | Step 150 | Loss 4.8795 | Elapsed 10.0s
+[TRAIN] Epoch 2 | Step 200 | Loss 4.7016 | Elapsed 13.3s
+  → Epoch 2 train avg loss: 4.9199
+[EVAL] Epoch 2 | Step 0 | Loss 4.6286 | Elapsed 0.0s
+  → Epoch 2 val avg loss: 4.5944
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 2)
+[TRAIN] Epoch 3 | Step 0 | Loss 4.6742 | Elapsed 0.1s
+[TRAIN] Epoch 3 | Step 50 | Loss 4.4367 | Elapsed 3.3s
+[TRAIN] Epoch 3 | Step 100 | Loss 4.4590 | Elapsed 6.6s
+[TRAIN] Epoch 3 | Step 150 | Loss 4.5044 | Elapsed 10.0s
+[TRAIN] Epoch 3 | Step 200 | Loss 4.4370 | Elapsed 13.3s
+  → Epoch 3 train avg loss: 4.4329
+[EVAL] Epoch 3 | Step 0 | Loss 4.1900 | Elapsed 0.0s
+  → Epoch 3 val avg loss: 4.1519
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 3)
+[TRAIN] Epoch 4 | Step 0 | Loss 4.0912 | Elapsed 0.1s
+[TRAIN] Epoch 4 | Step 50 | Loss 4.0955 | Elapsed 3.3s
+[TRAIN] Epoch 4 | Step 100 | Loss 3.9475 | Elapsed 6.6s
+[TRAIN] Epoch 4 | Step 150 | Loss 3.9118 | Elapsed 10.0s
+[TRAIN] Epoch 4 | Step 200 | Loss 3.9030 | Elapsed 13.3s
+  → Epoch 4 train avg loss: 4.0042
+[EVAL] Epoch 4 | Step 0 | Loss 3.8072 | Elapsed 0.0s
+  → Epoch 4 val avg loss: 3.7372
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 4)
+[TRAIN] Epoch 5 | Step 0 | Loss 3.8184 | Elapsed 0.1s
+[TRAIN] Epoch 5 | Step 50 | Loss 3.7380 | Elapsed 3.4s
+[TRAIN] Epoch 5 | Step 100 | Loss 3.6511 | Elapsed 6.6s
+[TRAIN] Epoch 5 | Step 150 | Loss 3.6911 | Elapsed 10.0s
+[TRAIN] Epoch 5 | Step 200 | Loss 3.5925 | Elapsed 13.4s
+  → Epoch 5 train avg loss: 3.6179
+[EVAL] Epoch 5 | Step 0 | Loss 3.5249 | Elapsed 0.0s
+  → Epoch 5 val avg loss: 3.4467
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 5)
+[TRAIN] Epoch 6 | Step 0 | Loss 3.4693 | Elapsed 0.1s
+[TRAIN] Epoch 6 | Step 50 | Loss 3.2619 | Elapsed 3.4s
+[TRAIN] Epoch 6 | Step 100 | Loss 3.3340 | Elapsed 6.7s
+[TRAIN] Epoch 6 | Step 150 | Loss 3.2596 | Elapsed 10.1s
+[TRAIN] Epoch 6 | Step 200 | Loss 3.2346 | Elapsed 13.4s
+  → Epoch 6 train avg loss: 3.3102
+[EVAL] Epoch 6 | Step 0 | Loss 3.3290 | Elapsed 0.0s
+  → Epoch 6 val avg loss: 3.2405
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 6)
+[TRAIN] Epoch 7 | Step 0 | Loss 3.2558 | Elapsed 0.1s
+[TRAIN] Epoch 7 | Step 50 | Loss 3.0865 | Elapsed 3.4s
+[TRAIN] Epoch 7 | Step 100 | Loss 3.1130 | Elapsed 6.6s
+[TRAIN] Epoch 7 | Step 150 | Loss 3.0007 | Elapsed 10.0s
+[TRAIN] Epoch 7 | Step 200 | Loss 3.0609 | Elapsed 13.3s
+  → Epoch 7 train avg loss: 3.0600
+[EVAL] Epoch 7 | Step 0 | Loss 3.1447 | Elapsed 0.0s
+  → Epoch 7 val avg loss: 3.0859
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 7)
+[TRAIN] Epoch 8 | Step 0 | Loss 2.9038 | Elapsed 0.1s
+[TRAIN] Epoch 8 | Step 50 | Loss 3.0109 | Elapsed 3.4s
+[TRAIN] Epoch 8 | Step 100 | Loss 2.8433 | Elapsed 6.7s
+[TRAIN] Epoch 8 | Step 150 | Loss 2.7768 | Elapsed 10.1s
+[TRAIN] Epoch 8 | Step 200 | Loss 2.8747 | Elapsed 13.4s
+  → Epoch 8 train avg loss: 2.8588
+[EVAL] Epoch 8 | Step 0 | Loss 3.0841 | Elapsed 0.0s
+  → Epoch 8 val avg loss: 2.9976
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 8)
+[TRAIN] Epoch 9 | Step 0 | Loss 2.6733 | Elapsed 0.1s
+[TRAIN] Epoch 9 | Step 50 | Loss 2.7601 | Elapsed 3.4s
+[TRAIN] Epoch 9 | Step 100 | Loss 2.7117 | Elapsed 6.7s
+[TRAIN] Epoch 9 | Step 150 | Loss 2.7148 | Elapsed 10.0s
+[TRAIN] Epoch 9 | Step 200 | Loss 2.7457 | Elapsed 13.4s
+  → Epoch 9 train avg loss: 2.6964
+[EVAL] Epoch 9 | Step 0 | Loss 3.0093 | Elapsed 0.0s
+  → Epoch 9 val avg loss: 2.9284
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 9)
+[TRAIN] Epoch 10 | Step 0 | Loss 2.5035 | Elapsed 0.1s
+[TRAIN] Epoch 10 | Step 50 | Loss 2.5740 | Elapsed 3.3s
+[TRAIN] Epoch 10 | Step 100 | Loss 2.4756 | Elapsed 6.6s
+[TRAIN] Epoch 10 | Step 150 | Loss 2.5778 | Elapsed 9.9s
+[TRAIN] Epoch 10 | Step 200 | Loss 2.5511 | Elapsed 13.2s
+  → Epoch 10 train avg loss: 2.5604
+[EVAL] Epoch 10 | Step 0 | Loss 2.9592 | Elapsed 0.0s
+  → Epoch 10 val avg loss: 2.8948
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 10)
+[TRAIN] Epoch 11 | Step 0 | Loss 2.3600 | Elapsed 0.1s
+[TRAIN] Epoch 11 | Step 50 | Loss 2.3397 | Elapsed 3.4s
+[TRAIN] Epoch 11 | Step 100 | Loss 2.4122 | Elapsed 6.7s
+[TRAIN] Epoch 11 | Step 150 | Loss 2.4260 | Elapsed 10.0s
+[TRAIN] Epoch 11 | Step 200 | Loss 2.5300 | Elapsed 13.5s
+  → Epoch 11 train avg loss: 2.4481
+[EVAL] Epoch 11 | Step 0 | Loss 2.9433 | Elapsed 0.0s
+  → Epoch 11 val avg loss: 2.8821
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 11)
+[TRAIN] Epoch 12 | Step 0 | Loss 2.3015 | Elapsed 0.1s
+[TRAIN] Epoch 12 | Step 50 | Loss 2.3341 | Elapsed 3.4s
+[TRAIN] Epoch 12 | Step 100 | Loss 2.3434 | Elapsed 6.8s
+[TRAIN] Epoch 12 | Step 150 | Loss 2.4351 | Elapsed 10.2s
+[TRAIN] Epoch 12 | Step 200 | Loss 2.4454 | Elapsed 13.5s
+  → Epoch 12 train avg loss: 2.3567
+[EVAL] Epoch 12 | Step 0 | Loss 2.9259 | Elapsed 0.0s
+  → Epoch 12 val avg loss: 2.8509
+  Checkpoint saved → checkpoint_sinusoidal_best.pt  (epoch 12)
+[TRAIN] Epoch 13 | Step 0 | Loss 2.1880 | Elapsed 0.1s
+[TRAIN] Epoch 13 | Step 50 | Loss 2.2720 | Elapsed 3.4s
+[TRAIN] Epoch 13 | Step 100 | Loss 2.3208 | Elapsed 6.7s
+[TRAIN] Epoch 13 | Step 150 | Loss 2.2963 | Elapsed 10.0s
+[TRAIN] Epoch 13 | Step 200 | Loss 2.3651 | Elapsed 13.5s
+  → Epoch 13 train avg loss: 2.2780
+[EVAL] Epoch 13 | Step 0 | Loss 2.9721 | Elapsed 0.0s
+  → Epoch 13 val avg loss: 2.8758
+[TRAIN] Epoch 14 | Step 0 | Loss 2.0644 | Elapsed 0.1s
+[TRAIN] Epoch 14 | Step 50 | Loss 2.1498 | Elapsed 3.4s
+[TRAIN] Epoch 14 | Step 100 | Loss 2.2412 | Elapsed 6.7s
+[TRAIN] Epoch 14 | Step 150 | Loss 2.2242 | Elapsed 10.1s
+[TRAIN] Epoch 14 | Step 200 | Loss 2.2414 | Elapsed 13.4s
+  → Epoch 14 train avg loss: 2.2071
+[EVAL] Epoch 14 | Step 0 | Loss 2.9726 | Elapsed 0.0s
+  → Epoch 14 val avg loss: 2.8753
+  Checkpoint loaded from checkpoint_sinusoidal_best.pt  (epoch 12)
+
+Sinusoidal Test BLEU: 37.43

@@ -386,8 +386,8 @@ class Transformer(nn.Module):
         src_vocab_size: int  = 0,   # 0 → derived from built vocab
         tgt_vocab_size: int  = 0,   # 0 → derived from built vocab
         d_model:   int   = 256,
-        N:         int   = 3,
-        num_heads: int   = 8,
+        N:         int   = 4,
+        num_heads: int   = 16,
         d_ff:      int   = 512,
         dropout:   float = 0.1,
         weights_path: str = "",     # explicit local path overrides urllib download

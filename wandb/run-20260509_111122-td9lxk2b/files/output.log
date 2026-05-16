@@ -1,0 +1,69 @@
+[Transformer] building vocab from Multi30k dataset ...
+[TRAIN] Epoch 0 | Step 0 | Loss 9.2339 | Elapsed 0.5s
+[TRAIN] Epoch 0 | Step 50 | Loss 7.4864 | Elapsed 3.9s
+[TRAIN] Epoch 0 | Step 100 | Loss 6.3638 | Elapsed 7.5s
+[TRAIN] Epoch 0 | Step 150 | Loss 5.7110 | Elapsed 10.9s
+[TRAIN] Epoch 0 | Step 200 | Loss 5.4025 | Elapsed 14.6s
+  → Epoch 0 train avg loss: 6.5634
+[EVAL] Epoch 0 | Step 0 | Loss 5.3460 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 5.3318
+[TRAIN] Epoch 1 | Step 0 | Loss 5.2967 | Elapsed 0.1s
+[TRAIN] Epoch 1 | Step 50 | Loss 5.1947 | Elapsed 3.7s
+[TRAIN] Epoch 1 | Step 100 | Loss 5.1155 | Elapsed 7.0s
+[TRAIN] Epoch 1 | Step 150 | Loss 4.9822 | Elapsed 10.4s
+[TRAIN] Epoch 1 | Step 200 | Loss 4.8496 | Elapsed 13.8s
+  → Epoch 1 train avg loss: 5.0437
+[EVAL] Epoch 1 | Step 0 | Loss 4.7559 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 4.7300
+[TRAIN] Epoch 2 | Step 0 | Loss 4.9036 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 4.7330 | Elapsed 3.5s
+[TRAIN] Epoch 2 | Step 100 | Loss 4.6785 | Elapsed 7.0s
+[TRAIN] Epoch 2 | Step 150 | Loss 4.5732 | Elapsed 10.4s
+[TRAIN] Epoch 2 | Step 200 | Loss 4.4731 | Elapsed 13.7s
+  → Epoch 2 train avg loss: 4.6307
+[EVAL] Epoch 2 | Step 0 | Loss 4.4782 | Elapsed 0.0s
+  → Epoch 2 val avg loss: 4.4321
+[TRAIN] Epoch 3 | Step 0 | Loss 4.4464 | Elapsed 0.1s
+[TRAIN] Epoch 3 | Step 50 | Loss 4.3835 | Elapsed 3.5s
+[TRAIN] Epoch 3 | Step 100 | Loss 4.3683 | Elapsed 6.9s
+[TRAIN] Epoch 3 | Step 150 | Loss 4.3476 | Elapsed 10.5s
+[TRAIN] Epoch 3 | Step 200 | Loss 4.1233 | Elapsed 14.1s
+  → Epoch 3 train avg loss: 4.3595
+[EVAL] Epoch 3 | Step 0 | Loss 4.2296 | Elapsed 0.0s
+  → Epoch 3 val avg loss: 4.1819
+[TRAIN] Epoch 4 | Step 0 | Loss 4.3184 | Elapsed 0.1s
+[TRAIN] Epoch 4 | Step 50 | Loss 4.2232 | Elapsed 3.5s
+[TRAIN] Epoch 4 | Step 100 | Loss 4.1377 | Elapsed 7.0s
+[TRAIN] Epoch 4 | Step 150 | Loss 4.0215 | Elapsed 10.4s
+[TRAIN] Epoch 4 | Step 200 | Loss 4.0269 | Elapsed 13.8s
+  → Epoch 4 train avg loss: 4.1264
+[EVAL] Epoch 4 | Step 0 | Loss 4.0114 | Elapsed 0.0s
+  → Epoch 4 val avg loss: 3.9617
+[TRAIN] Epoch 5 | Step 0 | Loss 4.0742 | Elapsed 0.1s
+[TRAIN] Epoch 5 | Step 50 | Loss 3.9842 | Elapsed 3.5s
+[TRAIN] Epoch 5 | Step 100 | Loss 3.9806 | Elapsed 7.0s
+[TRAIN] Epoch 5 | Step 150 | Loss 3.8936 | Elapsed 10.3s
+[TRAIN] Epoch 5 | Step 200 | Loss 3.8975 | Elapsed 13.9s
+  → Epoch 5 train avg loss: 3.9264
+[EVAL] Epoch 5 | Step 0 | Loss 3.8565 | Elapsed 0.0s
+  → Epoch 5 val avg loss: 3.7902
+[TRAIN] Epoch 6 | Step 0 | Loss 3.8669 | Elapsed 0.1s
+[TRAIN] Epoch 6 | Step 50 | Loss 3.7667 | Elapsed 3.4s
+[TRAIN] Epoch 6 | Step 100 | Loss 3.9890 | Elapsed 6.8s
+[TRAIN] Epoch 6 | Step 150 | Loss 3.8105 | Elapsed 10.3s
+[TRAIN] Epoch 6 | Step 200 | Loss 3.6671 | Elapsed 13.7s
+  → Epoch 6 train avg loss: 3.7529
+[EVAL] Epoch 6 | Step 0 | Loss 3.7408 | Elapsed 0.0s
+  → Epoch 6 val avg loss: 3.6556
+[TRAIN] Epoch 7 | Step 0 | Loss 3.6451 | Elapsed 0.1s
+[TRAIN] Epoch 7 | Step 50 | Loss 3.5692 | Elapsed 3.5s
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 589, in <module>
+    run_experiment_fixed_lr()
+  File "/home/asher747/da6401_assignment_3/train.py", line 527, in run_experiment_fixed_lr
+    train_loss = run_epoch(train_loader, model, loss_fn, optimizer, None,
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 137, in run_epoch
+    n_tokens     = (tgt_out != PAD_IDX).sum().item()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

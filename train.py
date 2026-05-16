@@ -381,12 +381,12 @@ def run_training_experiment() -> None:
     # ── Hyperparameters ───────────────────────────────────────────────
     config = dict(
         d_model       = 256,
-        N             = 3,
-        num_heads     = 8,
+        N             = 4,
+        num_heads     = 16,
         d_ff          = 512,
         dropout       = 0.1,
         batch_size    = 128,
-        num_epochs    = 10,
+        num_epochs    = 15,
         warmup_steps  = 4000,
         smoothing     = 0.1,
     )
@@ -444,12 +444,6 @@ def run_training_experiment() -> None:
             epoch_num=epoch, is_train=False, device=device,
         )
 
-        wandb.log({
-            'epoch':      epoch,
-            'train_loss': train_loss,
-            'val_loss':   val_loss,
-            'lr':         optimizer.param_groups[0]['lr'],
-        })
 
         save_checkpoint(model, optimizer, scheduler, epoch, path=f"checkpoint_epoch{epoch}.pt")
 
@@ -463,7 +457,6 @@ def run_training_experiment() -> None:
 
     bleu = evaluate_bleu(model, test_loader, tgt_vocab, device=device)
     print(f"\nTest BLEU: {bleu:.2f}")
-    wandb.log({'test_bleu': bleu, 'best_epoch': best_epoch})
 
     wandb.finish()
 
