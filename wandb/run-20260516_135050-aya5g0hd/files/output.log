@@ -1,0 +1,42 @@
+Using device: cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+[Transformer] weights loaded from checkpoint_best.pt
+Model parameters: 15,077,701
+[TRAIN] Epoch 0 | Step 0 | Loss 2.1271 | Elapsed 0.8s
+[TRAIN] Epoch 0 | Step 50 | Loss 2.0085 | Elapsed 5.6s
+[TRAIN] Epoch 0 | Step 100 | Loss 2.0462 | Elapsed 10.5s
+[TRAIN] Epoch 0 | Step 150 | Loss 2.0926 | Elapsed 15.6s
+[TRAIN] Epoch 0 | Step 200 | Loss 2.0150 | Elapsed 20.3s
+  → Epoch 0 train avg loss: 2.0751
+[EVAL] Epoch 0 | Step 0 | Loss 2.9465 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 2.8644
+  Checkpoint saved → checkpoint_epoch0.pt  (epoch 0)
+  Checkpoint saved → checkpoint_best.pt  (epoch 0)
+[TRAIN] Epoch 1 | Step 0 | Loss 2.0690 | Elapsed 0.1s
+[TRAIN] Epoch 1 | Step 50 | Loss 2.1169 | Elapsed 4.8s
+[TRAIN] Epoch 1 | Step 100 | Loss 2.0658 | Elapsed 9.6s
+[TRAIN] Epoch 1 | Step 150 | Loss 2.0297 | Elapsed 14.3s
+[TRAIN] Epoch 1 | Step 200 | Loss 2.0561 | Elapsed 19.3s
+  → Epoch 1 train avg loss: 2.0675
+[EVAL] Epoch 1 | Step 0 | Loss 2.9558 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 2.8663
+  Checkpoint saved → checkpoint_epoch1.pt  (epoch 1)
+[TRAIN] Epoch 2 | Step 0 | Loss 2.0424 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 2.0398 | Elapsed 4.8s
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 465, in <module>
+    run_training_experiment()
+  File "/home/asher747/da6401_assignment_3/train.py", line 436, in run_training_experiment
+    train_loss = run_epoch(
+                 ^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 130, in run_epoch
+    loss.backward()
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/_tensor.py", line 631, in backward
+    torch.autograd.backward(
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/autograd/__init__.py", line 381, in backward
+    _engine_run_backward(
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/autograd/graph.py", line 869, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

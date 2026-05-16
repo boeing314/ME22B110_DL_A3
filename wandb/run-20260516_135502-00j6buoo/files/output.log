@@ -1,0 +1,46 @@
+Using device: cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] downloading weights via gdown → checkpoint_best.pt
+Downloading...
+From (original): https://drive.google.com/uc?id=161lOAjSnO4Fmx3lQqYug2gDmmTKXxYst
+From (redirected): https://drive.google.com/uc?id=161lOAjSnO4Fmx3lQqYug2gDmmTKXxYst&confirm=t&uuid=fac11ca2-51a7-4d2a-8ef0-f0fd031f17b4
+To: /home/asher747/da6401_assignment_3/checkpoint_best.pt
+ 61%|████████████████████████████████████████████████▉                               | 114M/187M [00:30<00:23, 3.04MB/s]Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 465, in <module>
+    run_training_experiment()
+  File "/home/asher747/da6401_assignment_3/train.py", line 406, in run_training_experiment
+    model = Transformer(
+            ^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/model.py", line 423, in __init__
+    self._download_weights(ckpt_path)
+  File "/home/asher747/da6401_assignment_3/model.py", line 552, in _download_weights
+    gdown.download(url, dest_path, quiet=False)
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/gdown/download.py", line 398, in download
+    for chunk in res.iter_content(chunk_size=CHUNK_SIZE):
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/requests/models.py", line 822, in generate
+    yield from self.raw.stream(chunk_size, decode_content=True)
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/urllib3/response.py", line 1257, in stream
+    data = self.read(amt=amt, decode_content=decode_content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/urllib3/response.py", line 1112, in read
+    data = self._raw_read(amt)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/urllib3/response.py", line 1028, in _raw_read
+    data = self._fp_read(amt, read1=read1) if not fp_closed else b""
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/urllib3/response.py", line 1011, in _fp_read
+    return self._fp.read(amt) if amt is not None else self._fp.read()
+           ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/http/client.py", line 484, in read
+    s = self.fp.read(amt)
+        ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 707, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ssl.py", line 1252, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ssl.py", line 1104, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

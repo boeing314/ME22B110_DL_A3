@@ -1,0 +1,44 @@
+Using device: cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+[Transformer] weights loaded from checkpoint_best.pt
+Model parameters: 15,077,701
+[TRAIN] Epoch 0 | Step 0 | Loss 2.0249 | Elapsed 0.8s
+[TRAIN] Epoch 0 | Step 50 | Loss 2.1009 | Elapsed 5.6s
+[TRAIN] Epoch 0 | Step 100 | Loss 2.0778 | Elapsed 10.3s
+[TRAIN] Epoch 0 | Step 150 | Loss 2.0717 | Elapsed 15.0s
+[TRAIN] Epoch 0 | Step 200 | Loss 2.1779 | Elapsed 19.9s
+  → Epoch 0 train avg loss: 2.0941
+[EVAL] Epoch 0 | Step 0 | Loss 2.9505 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 2.8692
+  Checkpoint saved → checkpoint_epoch0.pt  (epoch 0)
+  Checkpoint saved → checkpoint_best.pt  (epoch 0)
+[TRAIN] Epoch 1 | Step 0 | Loss 2.0618 | Elapsed 0.1s
+[TRAIN] Epoch 1 | Step 50 | Loss 2.1163 | Elapsed 4.9s
+[TRAIN] Epoch 1 | Step 100 | Loss 2.0833 | Elapsed 9.6s
+[TRAIN] Epoch 1 | Step 150 | Loss 2.1270 | Elapsed 14.4s
+[TRAIN] Epoch 1 | Step 200 | Loss 2.0543 | Elapsed 19.3s
+  → Epoch 1 train avg loss: 2.0742
+[EVAL] Epoch 1 | Step 0 | Loss 2.9599 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 2.8727
+  Checkpoint saved → checkpoint_epoch1.pt  (epoch 1)
+[TRAIN] Epoch 2 | Step 0 | Loss 2.0713 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 2.0263 | Elapsed 4.8s
+[TRAIN] Epoch 2 | Step 100 | Loss 2.0544 | Elapsed 9.8s
+[TRAIN] Epoch 2 | Step 150 | Loss 2.0032 | Elapsed 14.9s
+[TRAIN] Epoch 2 | Step 200 | Loss 2.0378 | Elapsed 19.7s
+  → Epoch 2 train avg loss: 2.0460
+[EVAL] Epoch 2 | Step 0 | Loss 2.9523 | Elapsed 0.0s
+  → Epoch 2 val avg loss: 2.8735
+  Checkpoint saved → checkpoint_epoch2.pt  (epoch 2)
+[TRAIN] Epoch 3 | Step 0 | Loss 1.9826 | Elapsed 0.1s
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 465, in <module>
+    run_training_experiment()
+  File "/home/asher747/da6401_assignment_3/train.py", line 436, in run_training_experiment
+    train_loss = run_epoch(
+                 ^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 137, in run_epoch
+    n_tokens     = (tgt_out != PAD_IDX).sum().item()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

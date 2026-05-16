@@ -385,10 +385,10 @@ class Transformer(nn.Module):
         self,
         src_vocab_size: int  = 0,   # 0 → derived from built vocab
         tgt_vocab_size: int  = 0,   # 0 → derived from built vocab
-        d_model:   int   = 256,
+        d_model:   int   = 512,
         N:         int   = 4,
-        num_heads: int   = 16,
-        d_ff:      int   = 512,
+        num_heads: int   = 8,
+        d_ff:      int   = 2048,
         dropout:   float = 0.1,
         weights_path: str = "",     # explicit local path overrides urllib download
         device: str = "",           # "" → auto-detect
@@ -419,8 +419,7 @@ class Transformer(nn.Module):
 
         # ── 3. Download checkpoint if needed ──────────────────────────
         ckpt_path = weights_path or self._CHECKPOINT_NAME
-        if not os.path.exists(ckpt_path):
-            self._download_weights(ckpt_path)
+
 
         # ── 4. Vocabulary ─────────────────────────────────────────────
         # Prefer loading vocab from the checkpoint (no `datasets` needed).

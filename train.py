@@ -380,13 +380,13 @@ def run_training_experiment() -> None:
 
     # ── Hyperparameters ───────────────────────────────────────────────
     config = dict(
-        d_model       = 256,
+        d_model       = 512,
         N             = 4,
-        num_heads     = 16,
-        d_ff          = 512,
+        num_heads     = 8,
+        d_ff          = 2048,
         dropout       = 0.1,
-        batch_size    = 128,
-        num_epochs    = 15,
+        batch_size    = 64,
+        num_epochs    = 20,
         warmup_steps  = 4000,
         smoothing     = 0.1,
     )

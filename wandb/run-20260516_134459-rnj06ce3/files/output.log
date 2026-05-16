@@ -1,0 +1,61 @@
+Using device: cuda
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[Transformer] vocab loaded from checkpoint
+[Transformer] weights loaded from checkpoint_best.pt
+Model parameters: 15,077,701
+[TRAIN] Epoch 0 | Step 0 | Loss 2.2036 | Elapsed 1.5s
+[TRAIN] Epoch 0 | Step 50 | Loss 2.2063 | Elapsed 6.2s
+[TRAIN] Epoch 0 | Step 100 | Loss 2.0980 | Elapsed 11.0s
+[TRAIN] Epoch 0 | Step 150 | Loss 2.1280 | Elapsed 15.8s
+[TRAIN] Epoch 0 | Step 200 | Loss 2.2177 | Elapsed 20.6s
+  → Epoch 0 train avg loss: 2.1577
+[EVAL] Epoch 0 | Step 0 | Loss 2.9395 | Elapsed 0.0s
+  → Epoch 0 val avg loss: 2.8655
+  Checkpoint saved → checkpoint_epoch0.pt  (epoch 0)
+  Checkpoint saved → checkpoint_best.pt  (epoch 0)
+[TRAIN] Epoch 1 | Step 0 | Loss 2.0868 | Elapsed 0.2s
+[TRAIN] Epoch 1 | Step 50 | Loss 2.0700 | Elapsed 5.0s
+[TRAIN] Epoch 1 | Step 100 | Loss 2.0928 | Elapsed 9.8s
+[TRAIN] Epoch 1 | Step 150 | Loss 2.0603 | Elapsed 14.6s
+[TRAIN] Epoch 1 | Step 200 | Loss 2.1073 | Elapsed 19.4s
+  → Epoch 1 train avg loss: 2.0885
+[EVAL] Epoch 1 | Step 0 | Loss 2.9481 | Elapsed 0.0s
+  → Epoch 1 val avg loss: 2.8728
+  Checkpoint saved → checkpoint_epoch1.pt  (epoch 1)
+[TRAIN] Epoch 2 | Step 0 | Loss 2.0503 | Elapsed 0.1s
+[TRAIN] Epoch 2 | Step 50 | Loss 2.0243 | Elapsed 4.9s
+[TRAIN] Epoch 2 | Step 100 | Loss 2.1126 | Elapsed 9.7s
+[TRAIN] Epoch 2 | Step 150 | Loss 2.0107 | Elapsed 14.6s
+[TRAIN] Epoch 2 | Step 200 | Loss 2.1035 | Elapsed 19.5s
+  → Epoch 2 train avg loss: 2.0517
+[EVAL] Epoch 2 | Step 0 | Loss 2.9632 | Elapsed 0.1s
+  → Epoch 2 val avg loss: 2.8714
+  Checkpoint saved → checkpoint_epoch2.pt  (epoch 2)
+[TRAIN] Epoch 3 | Step 0 | Loss 1.9813 | Elapsed 0.1s
+[TRAIN] Epoch 3 | Step 50 | Loss 1.9452 | Elapsed 4.8s
+[TRAIN] Epoch 3 | Step 100 | Loss 2.0062 | Elapsed 9.7s
+[TRAIN] Epoch 3 | Step 150 | Loss 2.0339 | Elapsed 14.5s
+[TRAIN] Epoch 3 | Step 200 | Loss 2.0826 | Elapsed 19.2s
+  → Epoch 3 train avg loss: 2.0202
+[EVAL] Epoch 3 | Step 0 | Loss 2.9744 | Elapsed 0.0s
+  → Epoch 3 val avg loss: 2.8830
+  Checkpoint saved → checkpoint_epoch3.pt  (epoch 3)
+[TRAIN] Epoch 4 | Step 0 | Loss 1.9139 | Elapsed 0.2s
+[TRAIN] Epoch 4 | Step 50 | Loss 2.0075 | Elapsed 5.2s
+[TRAIN] Epoch 4 | Step 100 | Loss 2.0084 | Elapsed 10.1s
+Traceback (most recent call last):
+  File "/home/asher747/da6401_assignment_3/train.py", line 465, in <module>
+    run_training_experiment()
+  File "/home/asher747/da6401_assignment_3/train.py", line 436, in run_training_experiment
+    train_loss = run_epoch(
+                 ^^^^^^^^^^
+  File "/home/asher747/da6401_assignment_3/train.py", line 130, in run_epoch
+    loss.backward()
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/_tensor.py", line 631, in backward
+    torch.autograd.backward(
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/autograd/__init__.py", line 381, in backward
+    _engine_run_backward(
+  File "/home/asher747/da6401_assignment_3/venv/lib/python3.12/site-packages/torch/autograd/graph.py", line 869, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

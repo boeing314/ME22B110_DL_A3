@@ -7,3 +7,33 @@ __pycache__/
 
 # Model checkpoints
 checkpoint_best.pt
+checkpoint_epoch0.pt
+checkpoint_epoch1.pt
+checkpoint_epoch2.pt
+checkpoint_epoch3.pt
+checkpoint_epoch4.pt
+checkpoint_epoch5.pt
+checkpoint_epoch6.pt
+checkpoint_epoch7.pt
+checkpoint_epoch8.pt
+checkpoint_epoch9.pt
+checkpoint_epoch10.pt
+checkpoint_epoch11.pt
+checkpoint_epoch12.pt
+checkpoint_epoch13.pt
+checkpoint_epoch14.pt
+checkpoint_epoch15.pt
+checkpoint_epoch16.pt
+checkpoint_epoch17.pt
+checkpoint_epoch18.pt
+checkpoint_epoch19.pt
+checkpoint_epoch20.pt
+checkpoint_epoch21.pt
+checkpoint_epoch22.pt
+checkpoint_epoch23.pt
+checkpoint_epoch24.pt
+checkpoint_epoch25.pt
+checkpoint_epoch26.pt
+checkpoint_epoch27.pt
+checkpoint_epoch28.pt
+checkpoint_epoch29.pt
