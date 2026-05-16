@@ -6,6 +6,7 @@ __pycache__/
 *.pyc
 
 # Model checkpoints
+checkpoint_best.pty0_52z93.part
 checkpoint_best.pt
 checkpoint_epoch0.pt
 checkpoint_epoch1.pt
