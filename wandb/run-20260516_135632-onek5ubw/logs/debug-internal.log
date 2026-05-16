@@ -35,3 +35,7 @@
 {"time":"2026-05-16T13:59:49.13940925Z","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
 {"time":"2026-05-16T14:00:03.732318022Z","level":"INFO","msg":"filestream: sending request","total_files":2,"events_offset":26,"events_lines":2,"console_offset":48,"console_lines":5}
 {"time":"2026-05-16T14:00:04.1729451Z","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-05-16T14:00:18.733126063Z","level":"INFO","msg":"filestream: sending request","total_files":2,"events_offset":28,"events_lines":2,"console_offset":53,"console_lines":2}
+{"time":"2026-05-16T14:00:19.14596943Z","level":"INFO","msg":"filestream: request sent","status":"200 OK"}
+{"time":"2026-05-16T14:00:33.732857888Z","level":"INFO","msg":"filestream: sending request","total_files":2,"events_offset":30,"events_lines":2,"console_offset":55,"console_lines":3}
+{"time":"2026-05-16T14:00:34.239974022Z","level":"INFO","msg":"filestream: request sent","status":"200 OK"}

@@ -51,3 +51,9 @@ Model parameters: 49,028,165
 [TRAIN] Epoch 3 | Step 0 | Loss 3.6438 | Elapsed 0.3s
 [TRAIN] Epoch 3 | Step 50 | Loss 3.6599 | Elapsed 5.8s
 [TRAIN] Epoch 3 | Step 100 | Loss 3.4512 | Elapsed 11.3s
+[TRAIN] Epoch 3 | Step 150 | Loss 3.6189 | Elapsed 16.7s
+[TRAIN] Epoch 3 | Step 200 | Loss 3.3389 | Elapsed 22.3s
+[TRAIN] Epoch 3 | Step 250 | Loss 3.7135 | Elapsed 27.6s
+[TRAIN] Epoch 3 | Step 300 | Loss 3.5562 | Elapsed 33.1s
+[TRAIN] Epoch 3 | Step 350 | Loss 3.5323 | Elapsed 38.7s
+[TRAIN] Epoch 3 | Step 400 | Loss 3.2150 | Elapsed 44.2s
