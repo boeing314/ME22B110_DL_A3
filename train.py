@@ -269,11 +269,13 @@ def evaluate_bleu(
     Returns:
         bleu_score : Corpus-level BLEU (float, range 0–100).
     """
+
     model.eval()
+
     all_hypotheses = []
     all_references = []
 
-    # Resolve vocabulary lookup (supports both .itos[] and .lookup_token())
+    # Resolve vocabulary lookup
     def idx_to_token(idx):
         if hasattr(tgt_vocab, 'lookup_token'):
             return tgt_vocab.lookup_token(idx)
@@ -282,36 +284,59 @@ def evaluate_bleu(
     special_indices = {SOS_IDX, EOS_IDX, PAD_IDX}
 
     with torch.no_grad():
+
         for src, tgt in test_dataloader:
+
             src = src.to(device)
             tgt = tgt.to(device)
 
-            src_mask = make_src_mask(src, pad_idx=PAD_IDX).to(device)
+            batch_size = src.size(0)
 
-            ys = greedy_decode(
-                model, src, src_mask,
-                max_len=max_len,
-                start_symbol=SOS_IDX,
-                end_symbol=EOS_IDX,
-                device=device,
-            )
+            # ── Decode one sentence at a time ─────────────────────
+            for i in range(batch_size):
 
-            hyp_tokens = [
-                idx_to_token(idx.item())
-                for idx in ys[0]
-                if idx.item() not in special_indices
-            ]
-            ref_tokens = [
-                idx_to_token(idx.item())
-                for idx in tgt[0]
-                if idx.item() not in special_indices
-            ]
+                # Shape: [1, seq_len]
+                src_i = src[i:i+1]
+                tgt_i = tgt[i:i+1]
 
-            all_hypotheses.append(hyp_tokens)
-            all_references.append([ref_tokens])   # one reference per sentence
+                src_mask_i = make_src_mask(
+                    src_i,
+                    pad_idx=PAD_IDX
+                ).to(device)
 
-    return _corpus_bleu(all_hypotheses, all_references)
+                ys = greedy_decode(
+                    model=model,
+                    src=src_i,
+                    src_mask=src_mask_i,
+                    max_len=max_len,
+                    start_symbol=SOS_IDX,
+                    end_symbol=EOS_IDX,
+                    device=device,
+                )
 
+                # ── Hypothesis tokens ────────────────────────────
+                hyp_tokens = [
+                    idx_to_token(idx.item())
+                    for idx in ys[0]
+                    if idx.item() not in special_indices
+                ]
+
+                # ── Reference tokens ─────────────────────────────
+                ref_tokens = [
+                    idx_to_token(idx.item())
+                    for idx in tgt_i[0]
+                    if idx.item() not in special_indices
+                ]
+
+                all_hypotheses.append(hyp_tokens)
+                all_references.append([ref_tokens])
+
+    bleu_score = _corpus_bleu(
+        all_hypotheses,
+        all_references
+    )
+
+    return bleu_score
 
 # ══════════════════════════════════════════════════════════════════════
 #   CHECKPOINT UTILITIES
@@ -386,7 +411,7 @@ def run_training_experiment() -> None:
         d_ff          = 1024,
         dropout       = 0.1,
         batch_size    = 128,
-        num_epochs    = 25,
+        num_epochs    = 10,
         warmup_steps  = 2000,
         smoothing     = 0.1,
     )
@@ -418,9 +443,17 @@ def run_training_experiment() -> None:
 
     # ── Optimiser & Scheduler ─────────────────────────────────────────
     optimizer = torch.optim.Adam(
-        model.parameters(), lr=1.0, betas=(0.9, 0.98), eps=1e-9
+        model.parameters(),
+        lr=1.0,
+        betas=(0.9, 0.98),
+        eps=1e-9
     )
-    scheduler = NoamScheduler(optimizer, d_model=cfg.d_model, warmup_steps=cfg.warmup_steps)
+
+    scheduler = NoamScheduler(
+        optimizer,
+        d_model=cfg.d_model,
+        warmup_steps=cfg.warmup_steps
+    )
 
     # ── Loss ──────────────────────────────────────────────────────────
     loss_fn = LabelSmoothingLoss(
@@ -429,37 +462,120 @@ def run_training_experiment() -> None:
         smoothing=cfg.smoothing,
     )
 
-    # ── Training loop ─────────────────────────────────────────────────
+    # ── Tracking ──────────────────────────────────────────────────────
     best_val_loss = float('inf')
+    best_bleu = 0.0
 
+    # ── Training Loop ────────────────────────────────────────────────
     for epoch in range(cfg.num_epochs):
+
+        print(f"\n========== Epoch {epoch} ==========")
+
+        # ── Train ─────────────────────────────────────────────────
         train_loss = run_epoch(
-            train_loader, model, loss_fn,
-            optimizer, scheduler,
-            epoch_num=epoch, is_train=True, device=device,
+            train_loader,
+            model,
+            loss_fn,
+            optimizer,
+            scheduler,
+            epoch_num=epoch,
+            is_train=True,
+            device=device,
         )
+
+        # ── Validation Loss ──────────────────────────────────────
         val_loss = run_epoch(
-            val_loader, model, loss_fn,
-            None, None,
-            epoch_num=epoch, is_train=False, device=device,
+            val_loader,
+            model,
+            loss_fn,
+            None,
+            None,
+            epoch_num=epoch,
+            is_train=False,
+            device=device,
         )
 
+        # ── BLEU Evaluation ──────────────────────────────────────
+        bleu = evaluate_bleu(
+            model,
+            val_loader,
+            tgt_vocab,
+            device=device,
+        )
 
-        save_checkpoint(model, optimizer, scheduler, epoch, path=f"checkpoint_epoch{epoch}.pt")
+        print(
+            f"Epoch {epoch} Summary | "
+            f"Train Loss: {train_loss:.4f} | "
+            f"Val Loss: {val_loss:.4f} | "
+            f"BLEU: {bleu:.2f}"
+        )
 
+        # ── W&B Logging ──────────────────────────────────────────
+        wandb.log({
+            "epoch": epoch,
+            "train_loss": train_loss,
+            "val_loss": val_loss,
+            "bleu": bleu,
+        })
+
+        # ── Save Per-Epoch Checkpoint ────────────────────────────
+        save_checkpoint(
+            model,
+            optimizer,
+            scheduler,
+            epoch,
+            path=f"checkpoint_epoch{epoch}.pt"
+        )
+
+        # ── Save Best Validation Loss Model ──────────────────────
         if val_loss < best_val_loss:
             best_val_loss = val_loss
-            save_checkpoint(model, optimizer, scheduler, epoch, path="checkpoint_best.pt")
 
-    # ── Final BLEU ────────────────────────────────────────────────────
-    best_epoch = load_checkpoint("checkpoint_best.pt", model)
+            save_checkpoint(
+                model,
+                optimizer,
+                scheduler,
+                epoch,
+                path="checkpoint_best_loss.pt"
+            )
+
+            print(f"New best validation loss: {best_val_loss:.4f}")
+
+        # ── Save Best BLEU Model ─────────────────────────────────
+        if bleu > best_bleu:
+            best_bleu = bleu
+
+            save_checkpoint(
+                model,
+                optimizer,
+                scheduler,
+                epoch,
+                path="checkpoint_best_bleu.pt"
+            )
+
+            print(f"New best BLEU: {best_bleu:.2f}")
+
+    # ── Final Test Evaluation ────────────────────────────────────────
+    print("\nLoading best BLEU checkpoint...")
+
+    load_checkpoint("checkpoint_best_bleu.pt", model)
+
     model.to(device)
 
-    bleu = evaluate_bleu(model, test_loader, tgt_vocab, device=device)
-    print(f"\nTest BLEU: {bleu:.2f}")
+    test_bleu = evaluate_bleu(
+        model,
+        test_loader,
+        tgt_vocab,
+        device=device
+    )
+
+    print(f"\nFinal Test BLEU: {test_bleu:.2f}")
+
+    wandb.log({
+        "final_test_bleu": test_bleu
+    })
 
     wandb.finish()
-
 
 if __name__ == "__main__":
     run_training_experiment()
