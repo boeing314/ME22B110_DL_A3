@@ -384,7 +384,7 @@ def run_training_experiment() -> None:
         N             = 4,
         num_heads     = 8,
         d_ff          = 1024,
-        dropout       = 0.2,
+        dropout       = 0.1,
         batch_size    = 128,
         num_epochs    = 25,
         warmup_steps  = 2000,
