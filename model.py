@@ -385,11 +385,11 @@ class Transformer(nn.Module):
         self,
         src_vocab_size: int  = 0,   # 0 → derived from built vocab
         tgt_vocab_size: int  = 0,   # 0 → derived from built vocab
-        d_model:   int   = 512,
+        d_model:   int   = 256,
         N:         int   = 4,
         num_heads: int   = 8,
-        d_ff:      int   = 2048,
-        dropout:   float = 0.1,
+        d_ff:      int   = 1024,
+        dropout:   float = 0.2,
         weights_path: str = "",     # explicit local path overrides urllib download
         device: str = "",           # "" → auto-detect
     ) -> None:
