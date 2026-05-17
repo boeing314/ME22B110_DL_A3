@@ -406,14 +406,14 @@ def run_training_experiment() -> None:
     # ── Hyperparameters ───────────────────────────────────────────────
     config = dict(
         d_model       = 256,
-        N             = 4,
+        N             = 3,
         num_heads     = 8,
         d_ff          = 1024,
-        dropout       = 0.1,
+        dropout       = 0.05,
         batch_size    = 128,
         num_epochs    = 10,
         warmup_steps  = 2000,
-        smoothing     = 0.1,
+        smoothing     = 0.02,
     )
 
     wandb.init(project="da6401-a3", config=config)
