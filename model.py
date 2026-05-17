@@ -389,7 +389,7 @@ class Transformer(nn.Module):
         N:         int   = 3,
         num_heads: int   = 8,
         d_ff:      int   = 1024,
-        dropout:   float = 0.12,
+        dropout:   float = 0.05,
         weights_path: str = "",     # explicit local path overrides urllib download
         device: str = "",           # "" → auto-detect
     ) -> None:
