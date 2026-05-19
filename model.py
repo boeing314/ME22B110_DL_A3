@@ -1,31 +1,9 @@
-"""
-model.py — Transformer Architecture
-DA6401 Assignment 3: "Attention Is All You Need"
-
-AUTOGRADER CONTRACT (DO NOT MODIFY SIGNATURES):
-  ┌─────────────────────────────────────────────────────────────────┐
-  │  scaled_dot_product_attention(Q, K, V, mask) → (out, weights)  │
-  │  MultiHeadAttention.forward(q, k, v, mask)   → Tensor          │
-  │  PositionalEncoding.forward(x)               → Tensor          │
-  │  make_src_mask(src, pad_idx)                 → BoolTensor      │
-  │  make_tgt_mask(tgt, pad_idx)                 → BoolTensor      │
-  │  Transformer.encode(src, src_mask)           → Tensor          │
-  │  Transformer.decode(memory,src_m,tgt,tgt_m)  → Tensor          │
-  └─────────────────────────────────────────────────────────────────┘
-"""
-
 import math
 import copy
 from typing import Optional, Tuple
-
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
-
-# ══════════════════════════════════════════════════════════════════════
-#   STANDALONE ATTENTION FUNCTION
-# ══════════════════════════════════════════════════════════════════════
 
 def scaled_dot_product_attention(
     Q: torch.Tensor,
@@ -33,24 +11,6 @@ def scaled_dot_product_attention(
     V: torch.Tensor,
     mask: Optional[torch.Tensor] = None,
 ) -> Tuple[torch.Tensor, torch.Tensor]:
-    """
-    Compute Scaled Dot-Product Attention.
-
-        Attention(Q, K, V) = softmax( Q·Kᵀ / √dₖ ) · V
-
-    Args:
-        Q    : Query tensor,  shape (..., seq_q, d_k)
-        K    : Key tensor,    shape (..., seq_k, d_k)
-        V    : Value tensor,  shape (..., seq_k, d_v)
-        mask : Optional Boolean mask, shape broadcastable to
-               (..., seq_q, seq_k).
-               Positions where mask is True are MASKED OUT
-               (set to -inf before softmax).
-
-    Returns:
-        output : Attended output,   shape (..., seq_q, d_v)
-        attn_w : Attention weights, shape (..., seq_q, seq_k)
-    """
     d_k = Q.size(-1)
     # Scaled scores: (..., seq_q, seq_k)
     scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(d_k)
@@ -65,28 +25,10 @@ def scaled_dot_product_attention(
     output = torch.matmul(attn_w, V)
     return output, attn_w
 
-
-# ══════════════════════════════════════════════════════════════════════
-#   MASK HELPERS
-# ══════════════════════════════════════════════════════════════════════
-
 def make_src_mask(
     src: torch.Tensor,
     pad_idx: int = 1,
 ) -> torch.Tensor:
-    """
-    Build a padding mask for the encoder (source sequence).
-
-    Args:
-        src     : Source token-index tensor, shape [batch, src_len]
-        pad_idx : Vocabulary index of the <pad> token (default 1)
-
-    Returns:
-        Boolean mask, shape [batch, 1, 1, src_len]
-        True  → position is a PAD token (will be masked out)
-        False → real token
-    """
-    # (batch, 1, 1, src_len)  True where pad
     return (src == pad_idx).unsqueeze(1).unsqueeze(2)
 
 
@@ -94,40 +36,17 @@ def make_tgt_mask(
     tgt: torch.Tensor,
     pad_idx: int = 1,
 ) -> torch.Tensor:
-    """
-    Build a combined padding + causal (look-ahead) mask for the decoder.
-
-    Args:
-        tgt     : Target token-index tensor, shape [batch, tgt_len]
-        pad_idx : Vocabulary index of the <pad> token (default 1)
-
-    Returns:
-        Boolean mask, shape [batch, 1, tgt_len, tgt_len]
-        True → position is masked out (PAD or future token)
-    """
     tgt_len = tgt.size(1)
-    # Causal mask: upper triangle (excluding diagonal) is True
     causal_mask = torch.triu(
         torch.ones(tgt_len, tgt_len, dtype=torch.bool, device=tgt.device),
         diagonal=1
-    )  # (tgt_len, tgt_len)
+    )
 
-    # Padding mask: (batch, 1, 1, tgt_len)
     pad_mask = (tgt == pad_idx).unsqueeze(1).unsqueeze(2)
 
-    # Combine: (batch, 1, tgt_len, tgt_len)
     return causal_mask.unsqueeze(0).unsqueeze(0) | pad_mask
 
-
-# ══════════════════════════════════════════════════════════════════════
-#   MULTI-HEAD ATTENTION
-# ══════════════════════════════════════════════════════════════════════
-
 class MultiHeadAttention(nn.Module):
-    """
-    Multi-Head Attention as in "Attention Is All You Need", §3.2.2.
-    """
-
     def __init__(self, d_model: int, num_heads: int, dropout: float = 0.1) -> None:
         super().__init__()
         assert d_model % num_heads == 0, "d_model must be divisible by num_heads"
@@ -151,21 +70,7 @@ class MultiHeadAttention(nn.Module):
         value: torch.Tensor,
         mask:  Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
-        """
-        Args:
-            query : shape [batch, seq_q, d_model]
-            key   : shape [batch, seq_k, d_model]
-            value : shape [batch, seq_k, d_model]
-            mask  : Optional BoolTensor broadcastable to
-                    [batch, num_heads, seq_q, seq_k]
-
-        Returns:
-            output : shape [batch, seq_q, d_model]
-        """
         batch_size = query.size(0)
-
-        # Linear projections and split into heads
-        # (batch, seq, d_model) → (batch, num_heads, seq, d_k)
         def project_and_split(linear, x):
             return linear(x).view(batch_size, -1, self.num_heads, self.d_k).transpose(1, 2)
 
@@ -173,64 +78,32 @@ class MultiHeadAttention(nn.Module):
         K = project_and_split(self.W_k, key)
         V = project_and_split(self.W_v, value)
 
-        # Scaled dot-product attention per head
         attn_out, self.attn_weights = scaled_dot_product_attention(Q, K, V, mask)
-        # Apply dropout to attention weights (through output)
-        # attn_out: (batch, num_heads, seq_q, d_k)
-
-        # Concatenate heads: (batch, seq_q, d_model)
         attn_out = attn_out.transpose(1, 2).contiguous().view(batch_size, -1, self.d_model)
-
         return self.W_o(attn_out)
 
-
-# ══════════════════════════════════════════════════════════════════════
-#   POSITIONAL ENCODING
-# ══════════════════════════════════════════════════════════════════════
-
 class PositionalEncoding(nn.Module):
-    """
-    Sinusoidal Positional Encoding as in "Attention Is All You Need", §3.5.
-    """
-
     def __init__(self, d_model: int, dropout: float = 0.1, max_len: int = 5000) -> None:
         super().__init__()
         self.dropout = nn.Dropout(p=dropout)
 
-        # Build PE table: (1, max_len, d_model)
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)  # (max_len, 1)
         div_term = torch.exp(
             torch.arange(0, d_model, 2, dtype=torch.float) * (-math.log(10000.0) / d_model)
-        )  # (d_model/2,)
+        )
 
         pe[:, 0::2] = torch.sin(position * div_term)
         pe[:, 1::2] = torch.cos(position * div_term)
         pe = pe.unsqueeze(0)  # (1, max_len, d_model)
 
-        # Register as buffer (not a parameter — satisfies autograder check)
         self.register_buffer('pe', pe)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        """
-        Args:
-            x : Input embeddings, shape [batch, seq_len, d_model]
-        Returns:
-            Tensor of same shape [batch, seq_len, d_model]
-        """
         x = x + self.pe[:, :x.size(1), :]
         return self.dropout(x)
 
-
-# ══════════════════════════════════════════════════════════════════════
-#   FEED-FORWARD NETWORK
-# ══════════════════════════════════════════════════════════════════════
-
 class PositionwiseFeedForward(nn.Module):
-    """
-    Position-wise Feed-Forward Network, §3.3:
-        FFN(x) = max(0, x·W₁ + b₁)·W₂ + b₂
-    """
 
     def __init__(self, d_model: int, d_ff: int, dropout: float = 0.1) -> None:
         super().__init__()
@@ -241,19 +114,7 @@ class PositionwiseFeedForward(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.linear2(self.dropout(F.relu(self.linear1(x))))
 
-
-# ══════════════════════════════════════════════════════════════════════
-#   ENCODER LAYER
-# ══════════════════════════════════════════════════════════════════════
-
 class EncoderLayer(nn.Module):
-    """
-    Single Transformer encoder sub-layer (Post-LayerNorm):
-        x → Self-Attention → Add & Norm → FFN → Add & Norm
-
-    Post-LN matches the original paper exactly and is straightforward
-    to implement and debug.
-    """
 
     def __init__(self, d_model: int, num_heads: int, d_ff: int, dropout: float = 0.1) -> None:
         super().__init__()
@@ -272,18 +133,7 @@ class EncoderLayer(nn.Module):
         x = self.norm2(x + self.dropout(ffn_out))
         return x
 
-
-# ══════════════════════════════════════════════════════════════════════
-#   DECODER LAYER
-# ══════════════════════════════════════════════════════════════════════
-
 class DecoderLayer(nn.Module):
-    """
-    Single Transformer decoder sub-layer (Post-LayerNorm):
-        x → Masked Self-Attn → Add & Norm
-          → Cross-Attn(memory) → Add & Norm
-          → FFN → Add & Norm
-    """
 
     def __init__(self, d_model: int, num_heads: int, d_ff: int, dropout: float = 0.1) -> None:
         super().__init__()
@@ -302,24 +152,15 @@ class DecoderLayer(nn.Module):
         src_mask: torch.Tensor,
         tgt_mask: torch.Tensor,
     ) -> torch.Tensor:
-        # Masked self-attention
         attn1 = self.self_attn(x, x, x, tgt_mask)
         x = self.norm1(x + self.dropout(attn1))
-        # Cross-attention over encoder memory
         attn2 = self.cross_attn(x, memory, memory, src_mask)
         x = self.norm2(x + self.dropout(attn2))
-        # FFN
         ffn_out = self.ffn(x)
         x = self.norm3(x + self.dropout(ffn_out))
         return x
 
-
-# ══════════════════════════════════════════════════════════════════════
-#   ENCODER & DECODER STACKS
-# ══════════════════════════════════════════════════════════════════════
-
 class Encoder(nn.Module):
-    """Stack of N identical EncoderLayer modules with final LayerNorm."""
 
     def __init__(self, layer: EncoderLayer, N: int) -> None:
         super().__init__()
@@ -333,7 +174,6 @@ class Encoder(nn.Module):
 
 
 class Decoder(nn.Module):
-    """Stack of N identical DecoderLayer modules with final LayerNorm."""
 
     def __init__(self, layer: DecoderLayer, N: int) -> None:
         super().__init__()
@@ -351,58 +191,31 @@ class Decoder(nn.Module):
             x = layer(x, memory, src_mask, tgt_mask)
         return self.norm(x)
 
-
-# ══════════════════════════════════════════════════════════════════════
-#   FULL TRANSFORMER
-# ══════════════════════════════════════════════════════════════════════
-
-# Special token indices (must match dataset.py)
 _UNK_IDX, _PAD_IDX, _SOS_IDX, _EOS_IDX = 0, 1, 2, 3
 
 
 class Transformer(nn.Module):
-    """
-    Full Encoder-Decoder Transformer for De→En machine translation.
-
-    On construction the model:
-      1. Loads spaCy tokenisers (de + en).
-      2. Builds / loads source & target vocabularies from the Multi30k
-         training split (so vocab is always consistent with training).
-      3. Downloads trained weights from Google Drive (stdlib urllib) and loads
-         them — all transparent to the caller.
-
-    Public API guaranteed by the autograder:
-        model = Transformer()          # no args required
-        english = model.infer(german)  # str → str
-    """
-
-    # ── Google Drive file-id of your saved checkpoint ─────────────────
-    # Replace this with your actual file-id once you upload to Drive.
     _GDRIVE_FILE_ID   = "161lOAjSnO4Fmx3lQqYug2gDmmTKXxYst"
     _CHECKPOINT_NAME  = "checkpoint_best.pt"
 
     def __init__(
         self,
-        src_vocab_size: int  = 0,   # 0 → derived from built vocab
-        tgt_vocab_size: int  = 0,   # 0 → derived from built vocab
+        src_vocab_size: int  = 0,   
+        tgt_vocab_size: int  = 0,   
         d_model:   int   = 256,
         N:         int   = 3,
         num_heads: int   = 8,
         d_ff:      int   = 1024,
         dropout:   float = 0.05,
-        weights_path: str = "",     # explicit local path overrides urllib download
-        device: str = "",           # "" → auto-detect
+        weights_path: str = "",     
+        device: str = "",           
     ) -> None:
-        # ── 1. Tokenisers ──────────────────────────────────────────────
         import sys, spacy, subprocess, os
 
         def _load_spacy(model_name: str):
-            """Load a spaCy model, downloading it first if missing."""
             try:
                 return spacy.load(model_name)
             except OSError:
-                # sys.executable always resolves to the correct interpreter
-                # ('python3', venv path, etc.) — never the bare 'python' alias.
                 subprocess.run(
                     [sys.executable, "-m", "spacy", "download", model_name],
                     check=True
@@ -412,21 +225,14 @@ class Transformer(nn.Module):
         self._spacy_de = _load_spacy("de_core_news_sm")
         self._spacy_en = _load_spacy("en_core_web_sm")
 
-        # ── 2. Device ─────────────────────────────────────────────────
         self._device = device if device else (
             "cuda" if torch.cuda.is_available() else "cpu"
         )
-
-        # ── 3. Download checkpoint if needed ──────────────────────────
 
         ckpt_path = weights_path or self._CHECKPOINT_NAME
         if not os.path.exists(ckpt_path):
             self._download_weights(ckpt_path)
 
-
-        # ── 4. Vocabulary ─────────────────────────────────────────────
-        # Prefer loading vocab from the checkpoint (no `datasets` needed).
-        # Fall back to building from scratch only during training.
         _ckpt_state = None
         if os.path.exists(ckpt_path):
             _ckpt_state = torch.load(ckpt_path, map_location="cpu")
@@ -434,20 +240,17 @@ class Transformer(nn.Module):
         if (isinstance(_ckpt_state, dict)
                 and "src_itos" in _ckpt_state
                 and "tgt_itos" in _ckpt_state):
-            # Fast path: vocab stored inside the checkpoint
             self._src_vocab, self._tgt_vocab = self._restore_vocabs(
                 _ckpt_state["src_itos"], _ckpt_state["tgt_itos"]
             )
             print("[Transformer] vocab loaded from checkpoint")
         else:
-            # Training-time path: build from Multi30k (requires datasets)
             print("[Transformer] building vocab from Multi30k dataset ...")
             self._src_vocab, self._tgt_vocab = self._build_vocabs()
 
         resolved_src = src_vocab_size if src_vocab_size > 0 else len(self._src_vocab)
         resolved_tgt = tgt_vocab_size if tgt_vocab_size > 0 else len(self._tgt_vocab)
 
-        # ── 5. Architecture ───────────────────────────────────────────
         super().__init__()
 
         self.src_embed   = nn.Embedding(resolved_src, d_model)
@@ -469,7 +272,6 @@ class Transformer(nn.Module):
 
         self._init_weights()
 
-        # ── 6. Load model weights ─────────────────────────────────────
         if _ckpt_state is not None:
             sd = (_ckpt_state.get("model_state_dict")
                   if isinstance(_ckpt_state, dict) else _ckpt_state)
@@ -480,10 +282,7 @@ class Transformer(nn.Module):
 
         self.to(self._device)
 
-    # ── Vocabulary helpers ────────────────────────────────────────────
-
     class _Vocab:
-        """Tiny vocabulary: list-backed, four special tokens prepended."""
         UNK, PAD, SOS, EOS = 0, 1, 2, 3
 
         def __init__(self):
@@ -512,7 +311,6 @@ class Transformer(nn.Module):
         return [t.text.lower() for t in self._spacy_en.tokenizer(text)]
 
     def _build_vocabs(self):
-        """Build src/tgt vocabs from Multi30k training split (requires datasets)."""
         from datasets import load_dataset
         src_vocab = self._Vocab()
         tgt_vocab = self._Vocab()
@@ -525,7 +323,6 @@ class Transformer(nn.Module):
         return src_vocab, tgt_vocab
 
     def _restore_vocabs(self, src_itos: list, tgt_itos: list):
-        """Reconstruct _Vocab objects from saved itos lists (no datasets needed)."""
         def _from_itos(itos):
             v = self._Vocab()
             v.itos = itos
@@ -533,10 +330,7 @@ class Transformer(nn.Module):
             return v
         return _from_itos(src_itos), _from_itos(tgt_itos)
 
-    # ── Weight download ───────────────────────────────────────────────
-
     def _download_weights(self, dest_path: str):
-        """Download checkpoint from Google Drive using gdown."""
         if self._GDRIVE_FILE_ID == "YOUR_GDRIVE_FILE_ID_HERE":
             print("[Transformer] _GDRIVE_FILE_ID not set — skipping download")
             return
@@ -553,14 +347,10 @@ class Transformer(nn.Module):
         print(f"[Transformer] downloading weights via gdown → {dest_path}")
         gdown.download(url, dest_path, quiet=False)
 
-    # ── Weight init ───────────────────────────────────────────────────
-
     def _init_weights(self):
         for p in self.parameters():
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
-
-    # ── Autograder hooks ──────────────────────────────────────────────
 
     def encode(self, src: torch.Tensor, src_mask: torch.Tensor) -> torch.Tensor:
         x = self.pos_enc(self.src_embed(src) * math.sqrt(self.config["d_model"]))
@@ -587,43 +377,19 @@ class Transformer(nn.Module):
         memory = self.encode(src, src_mask)
         return self.decode(memory, src_mask, tgt, tgt_mask)
 
-    # ── End-to-end inference ──────────────────────────────────────────
-
     def infer(self, german_sentence: str, max_len: int = 100) -> str:
-        """
-        Translate a single German sentence to English.
-
-        Pipeline:
-            1. Tokenise German input with spaCy.
-            2. Convert tokens → integer indices using src_vocab.
-            3. Build source mask and run encoder.
-            4. Autoregressive greedy decoding with the decoder.
-            5. Convert output indices → English tokens → joined string.
-
-        Args:
-            german_sentence (str) : Raw German input text.
-            max_len         (int) : Maximum number of output tokens (default 100).
-
-        Returns:
-            str : Translated English sentence.
-        """
+        
         self.eval()
         device = self._device
-
-        # ── Tokenise & encode source ───────────────────────────────────
         tokens  = self._tokenize_de(german_sentence)
         indices = ([self._Vocab.SOS]
                    + self._src_vocab.encode(tokens)
                    + [self._Vocab.EOS])
         src = torch.tensor([indices], dtype=torch.long, device=device)  # (1, src_len)
-
-        # ── Masks & encoder ────────────────────────────────────────────
         src_mask = make_src_mask(src, pad_idx=_PAD_IDX).to(device)
 
         with torch.no_grad():
             memory = self.encode(src, src_mask)
-
-            # ── Greedy decoding ────────────────────────────────────────
             ys = torch.tensor([[_SOS_IDX]], dtype=torch.long, device=device)
 
             for _ in range(max_len - 1):
@@ -635,6 +401,5 @@ class Transformer(nn.Module):
                 if next_tok.item() == _EOS_IDX:
                     break
 
-        # ── Detokenise ─────────────────────────────────────────────────
         out_tokens = self._tgt_vocab.decode(ys[0].tolist())
         return " ".join(out_tokens)

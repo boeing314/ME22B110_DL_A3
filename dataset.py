@@ -1,22 +1,14 @@
-"""
-dataset.py — Multi30k Dataset Loading and Processing
-DA6401 Assignment 3: "Attention Is All You Need"
-"""
-
 import torch
 from torch.utils.data import Dataset, DataLoader
 from torch.nn.utils.rnn import pad_sequence
 from datasets import load_dataset
 import spacy
 
-
-# ── Special token indices ──────────────────────────────────────────────
 UNK_IDX, PAD_IDX, SOS_IDX, EOS_IDX = 0, 1, 2, 3
 SPECIAL_TOKENS = ['<unk>', '<pad>', '<sos>', '<eos>']
 
 
 class Vocabulary:
-    """Simple vocabulary backed by a list and two dicts."""
 
     def __init__(self):
         self.itos = SPECIAL_TOKENS[:]          # index → token
@@ -38,10 +30,6 @@ class Vocabulary:
 
 
 class Multi30kDataset(Dataset):
-    """
-    Loads the Multi30k De→En dataset from Hugging Face,
-    tokenises with spaCy, and converts to integer sequences.
-    """
 
     def __init__(self, split: str = 'train'):
         self.split = split
@@ -60,19 +48,13 @@ class Multi30kDataset(Dataset):
             import subprocess
             subprocess.run(['python', '-m', 'spacy', 'download', 'en_core_web_sm'], check=True)
             self.spacy_en = spacy.load('en_core_web_sm')
-
-        # Load dataset from HuggingFace
         raw = load_dataset('bentrevett/multi30k')
 
-        # Build vocab on training split only
         self.src_vocab = Vocabulary()
         self.tgt_vocab = Vocabulary()
         self._build_vocab(raw['train'])
 
-        # Tokenise and encode the requested split
         self.data = self._process_split(raw[split])
-
-    # ── Tokenisers ────────────────────────────────────────────────────
 
     def tokenize_de(self, text: str):
         return [tok.text.lower() for tok in self.spacy_de.tokenizer(text)]
@@ -80,10 +62,7 @@ class Multi30kDataset(Dataset):
     def tokenize_en(self, text: str):
         return [tok.text.lower() for tok in self.spacy_en.tokenizer(text)]
 
-    # ── Vocab building ────────────────────────────────────────────────
-
     def build_vocab(self):
-        """Public alias kept for API compatibility."""
         pass  # vocab is built in __init__
 
     def _build_vocab(self, train_split):
@@ -93,10 +72,7 @@ class Multi30kDataset(Dataset):
             for tok in self.tokenize_en(example['en']):
                 self.tgt_vocab.add_token(tok)
 
-    # ── Data processing ───────────────────────────────────────────────
-
     def process_data(self):
-        """Public alias kept for API compatibility."""
         pass  # data is processed in __init__
 
     def _encode(self, tokens, vocab: Vocabulary):
@@ -114,9 +90,7 @@ class Multi30kDataset(Dataset):
                 torch.tensor(tgt_ids, dtype=torch.long),
             ))
         return examples
-
-    # ── Dataset protocol ──────────────────────────────────────────────
-
+    
     def __len__(self):
         return len(self.data)
 
@@ -125,7 +99,6 @@ class Multi30kDataset(Dataset):
 
 
 def collate_fn(batch):
-    """Pad a batch of (src, tgt) pairs to the same length."""
     src_batch, tgt_batch = zip(*batch)
     src_padded = pad_sequence(src_batch, batch_first=True, padding_value=PAD_IDX)
     tgt_padded = pad_sequence(tgt_batch, batch_first=True, padding_value=PAD_IDX)
@@ -133,10 +106,6 @@ def collate_fn(batch):
 
 
 def get_dataloaders(batch_size: int = 128):
-    """
-    Convenience function: returns (train_loader, val_loader, test_loader,
-    src_vocab, tgt_vocab).
-    """
     train_ds = Multi30kDataset('train')
     val_ds   = Multi30kDataset('validation')
     test_ds  = Multi30kDataset('test')

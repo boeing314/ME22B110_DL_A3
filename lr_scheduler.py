@@ -1,32 +1,9 @@
-"""
-Noam Learning Rate Scheduler
-Reference: "Attention Is All You Need" (Vaswani et al., 2017)
-           https://arxiv.org/abs/1706.03762
-
-Formula:
-    lrate = d_model^(-0.5) * min(step^(-0.5), step * warmup_steps^(-1.5))
-"""
-
 import torch
 import torch.optim as optim
 from torch.optim.lr_scheduler import LRScheduler
 
 
 class NoamScheduler(LRScheduler):
-    """
-    Noam learning rate scheduler as described in "Attention Is All You Need".
-
-    Applies a warm-up phase where LR increases linearly, followed by
-    a decay phase where LR decreases proportional to the inverse square
-    root of the step number.
-
-    Args:
-        optimizer    (torch.optim.Optimizer): Wrapped optimizer.
-        d_model      (int)  : Model dimensionality (embedding size).
-        warmup_steps (int)  : Number of warm-up steps before decay begins.
-        last_epoch   (int)  : The index of the last epoch. Default: -1.
-    """
-
     def __init__(
         self,
         optimizer: optim.Optimizer,
@@ -39,12 +16,6 @@ class NoamScheduler(LRScheduler):
         super().__init__(optimizer, last_epoch=last_epoch)
 
     def _get_lr_scale(self) -> float:
-        """
-        Compute the Noam scaling factor for the current step.
-
-        step = last_epoch + 1  (avoids step=0 issues)
-        scale = d_model^(-0.5) * min(step^(-0.5), step * warmup_steps^(-1.5))
-        """
         step = self.last_epoch + 1  # 1-indexed
         scale = (self.d_model ** -0.5) * min(
             step ** -0.5,
@@ -53,38 +24,23 @@ class NoamScheduler(LRScheduler):
         return scale
 
     def get_lr(self) -> list:
-        """
-        Compute learning rates for every param group.
-
-        Returns:
-            list[float]: New LR for each param group.
-        """
         scale = self._get_lr_scale()
         return [base_lr * scale for base_lr in self.base_lrs]
-
-
-# ──────────────────────────────────────────────────────────────────────
-# Helper — do NOT modify
-# ──────────────────────────────────────────────────────────────────────
 
 def get_lr_history(
     d_model: int,
     warmup_steps: int,
     total_steps: int,
 ) -> list:
-    """
-    Simulate the LR trajectory of NoamScheduler for `total_steps` steps.
-    """
+
     dummy_model = torch.nn.Linear(1, 1)
     optimizer   = optim.Adam(dummy_model.parameters(), lr=1.0)
     scheduler   = NoamScheduler(optimizer, d_model=d_model, warmup_steps=warmup_steps)
-
     history = []
     for _ in range(total_steps):
         history.append(optimizer.param_groups[0]["lr"])
         optimizer.step()
         scheduler.step()
-
     return history
 
 
